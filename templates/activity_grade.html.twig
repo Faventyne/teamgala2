@@ -1,0 +1,78 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Activity Grade
+{% endblock %}
+
+{%  block pagename %}
+    Activity Grade
+{% endblock %}
+
+{% block username %}
+    {{ currentuser.firstname }} {{ currentuser.lastname }}
+{% endblock %}
+
+{% block content %}
+    <form action="../../myactivities" method="post">
+        <input type="hidden" name="usrId" value="{{ currentuser.id }}">
+        <input type="hidden" name="actId" value="{{ actId }}">
+        <input type="hidden" name="criId" value="{{ criId }}">
+        {# For every criterion/stage (similar here)...#}
+        {% for stage in result %}
+
+            <div class="row">
+                <h3> {{ stage.criterion.name }} </h3>
+            </div>
+
+            {# For every participant...#}
+            {% for participant in stage.participants %}
+
+                <div class="row">
+                    {{ participant.usr_firstname }}
+                    <div class="input-field col s10 m5">
+                        <label for="grade">Valeur</label>
+                        {% if stage.criterion.step is null %}
+                            <input name="{{ participant.usr_id }}" type="number" id="grade" step="any" min="{{ stage.criterion.lowerbound }}" max="{{ stage.criterion.upperbound }}
+                            value="{{ 70/100*(stage.criterion.upperbound - stage.criterion.lowerbound)*70/100|round(0.1,'ceil') }}" >
+                        {% else %}
+                            <input name="{{ participant.usr_id }}" type="number" id="grade" step="{{ stage.criterion.step }}" min="{{ stage.criterion.lowerbound }}" max="{{ stage.criterion.upperbound }}"
+                                   value="{{ (70*(stage.criterion.upperbound - stage.criterion.lowerbound)-70*(stage.criterion.upperbound - stage.criterion.lowerbound)%(100*stage.criterion.step))/100 }}" >
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% endfor %}
+        {% endfor %}
+        <div class="row section">
+            <div class="col">
+                <button class="waves-effect waves-light btn-large save-button">SAVE</button>
+            </div>
+        </div>
+        <div class="row section">
+            <div class="col">
+                <a class="waves-effect waves-light btn-large submit-button modal-trigger" href="#modal1">SUBMIT</a>
+            </div>
+        </div>
+
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h4>Submit grades</h4>
+                        <p>You will not be able to change the grades after submission. Do you confirm ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes</a>
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat red-text">Agree</a>
+                    </div>
+                </div>
+
+
+
+    </form>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/grades.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+  Create User
+{% endblock %}
+
+{% block pagename %}
+  Create User
+{% endblock %}
+{% block username %}
+  {{ currentuser.firstname }}
+  {{ currentuser.lastname }}
+{% endblock %}
+
+{% block content %}
+
+  <img src="{{ asset('lib/img/Serpico.png') }}" alt="Logo Serpico"/>
+  {{ form_start(form) }}
+  <div>
+    {{ message }}
+  </div>
+  <div class="row">
+    <div class="">
+      <input disabled="disabled" value="Organisation" id="disabled" type="text" class="validate">
+      <label for="disabled">Disabled</label>
+    </div>
+    <div class="row">
+      <div class="input-field col s10">
+
+        {{ form_widget(form.firstname) }}
+        {{ form_label(form.firstname) }}
+        <div class="errorMessage">
+          {{ form_errors(form.firstname) }}
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="input-field col s10">
+
+          {{ form_widget(form.lastname) }}
+          {{ form_label(form.lastname) }}
+          <div class="errorMessage">
+            {{ form_errors(form.lastname) }}
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="input-field col s10">
+
+            {{ form_widget(form.email) }}
+            {{ form_label(form.email) }}
+            <div class="errorMessage">
+              {{ form_errors(form.email) }}
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s10">
+            {{ form_label(form.rolId) }}
+            {{ form_widget(form.rolId) }}
+            {{ form_errors(form.rolId) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s10">
+
+            {{ form_widget(form.positionName) }}
+            {{ form_label(form.positionName) }}
+            <div class="errorMessage">
+              {{ form_errors(form.positionName) }}
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s10">
+            {{ form_widget(form.weightIni) }}
+            {{ form_label(form.weightIni) }}
+            {{ form_errors(form.weightIni) }}
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="button-field col s10">
+          {{ form_row(form.submit) }}
+        </div>
+      </div>
+
+      {{ form_end(form)}}
+    {% endblock %}

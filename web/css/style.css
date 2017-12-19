@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+*{
+  box-sizing: border-box;
+  /*transition-duration: 0.3s;*/
+  font-family: "Montserrat";
+}
+
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 100%;
+  height: 800px;
+  margin:auto;
+}
+
+header {
+background-color: black;
+box-shadow: 0px 5px 15px #black;
+height: 15vw;
+}
+
+header h3{
+  display: none;
+}
+
+header h4{
+  display: none;
+}
+
+header h5{
+  position: absolute;
+  color: white;
+  font-size: 1.5vh;
+  margin-top: 0vh;
+  margin-left: 12vh;
+}
+
+#logoHomepage{
+  display: none;
+}
+/* jai du faire trois id pour les icons ca marche pas avec materialize pour le css */
+#returnMenu {
+  margin-top: 2vw;
+  position: absolute;
+  font-size: 10vw;
+  color: white;
+  text-shadow: 3px 3px 10px black;
+}
+#returnPage{
+  margin-top: 2vw;
+  position: absolute;
+  margin-left: 10vw;
+  font-size: 10vw;
+  color: white;
+  text-shadow: 3px 3px 10px black;
+}
+#logOutButton{
+  margin-top: 2vw;
+  position: absolute;
+  font-size: 10vw;
+  color: white;
+  margin-left: 85vw;
+  text-shadow: 3px 3px 10px black;
+
+}
+.currentPage{
+  height: 10vw;
+  width: 60vw;
+  font-size: 5vw;
+  padding-top: 3vw;
+  margin-left: 22vw;
+  color: white;
+  overflow: hidden;
+}
+
+
+.hiddenMenu{
+  position: absolute;
+  display: none;
+
+}
+
+#logOutMenu{
+  padding: 10vw;
+  font-size: 5vw;
+  position: absolute;
+  height: 80vh;
+  width: 90vw;
+  margin: auto;
+  margin-top: 10vh;
+  margin-left: 5vw;
+  z-index: 3;
+  background-color: #e1eae5;
+  border: 1vw solid black;
+  border-radius: 10vw;
+  box-shadow: 1vw 1vw 5vw black;
+}
+#logOutMenu h1{
+  font-size: 10vw;
+  text-shadow: 0.5vw 1vw 3vw black;
+}
+
+#logOutMenu ul{
+  font-size: 5vw;
+  margin-left: -1vw;
+}
+#logOutMenu li{
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5vw;
+  padding-left: 1vw;
+  text-align: center;
+}
+
+#closeButton{
+  height: 10vw;
+  margin-top: 25vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5vw;
+  padding-top: 1vw;
+  text-align: center;
+}
+
+
+
+
+/*********** end of header ***************/
+
+.fixed-action-btn{
+margin-right: 25vw;
+}
+.btn-large{
+  width: 50vw;
+  height: 10vw;
+  padding-top: 2vw;
+  background-color: green;
+  font-size: 3vw;
+  border-radius: 2vw;
+
+}
+
+.action-button{
+  margin-bottom: 6vw;
+  margin-right: 2vw;
+  width: 15vw;
+  height: 7vw;
+  border-top-left-radius: 30%;
+  border-bottom-right-radius: 30%;
+}
+
+/* error messages */
+.errorMessage{
+  color: red;
+}
+
+/************************************************************************************/
+
+
+img{
+  width: 30%;
+  margin-left: 37%;
+  margin-top: 20%;
+}
+/*** FORM LOGIN*/
+
+form{
+  margin-left: 15%;
+  margin-top: 15%;
+  font-size: 3vw;
+}
+
+#disabled{
+    font-size: 1vw;
+}
+
+form div .input-field label{
+    font-size: 1vw;
+}
+
+#email{
+  padding-bottom: 0.5vw;
+}
+
+#password{
+  padding-bottom: 0.5vw;
+}
+
+form p{
+  padding-left: 1vw;
+}
+
+.input-field label{
+  margin-bottom: 0.2vw;
+}
+
+.button-field button{
+  width: 50%;
+  border-style: none;
+  background-color: #929393;
+  color : white;
+  border-radius: 25px;
+  padding:1vh 2vw 1vh 2vw;
+  margin-left: 26%;
+  margin-top: 3vw;
+}
+
+
+
+
+/*********lists *********/
+.collapsible{
+  font-size: 2.5vw;
+  font-weight: 600;
+}
+#ListButtons button{
+  width: 20vw;
+}
+.collection{
+  font-size: 3.5vw;
+}
+#userPhotoDiv{
+border: 1px solid darkgrey;
+background-color: darkgrey;
+border-radius: 50%;
+height: 10vw;
+width: 10vw;
+padding: 0px;
+margin-right: 1vw;
+overflow: hidden;
+}
+#userPhoto{
+  height: 100%;
+  width: 100%;
+margin: 0px;
+}
+
+#alexButton{
+  color: white;
+  height: 50%;
+  width: 20vw;
+  margin-right: -2vw;
+  padding-top: 0.5vw;
+  border-radius: 25px;
+  margin-left: 8vw; 
+  margin-top: 7vw;
+}
+#alexButton a{
+  color: white;
+  font-size: 3.5vw;
+}
+
+/*** HOME PAGE ***/
+
+ul {
+  margin-left: 6vw;
+  font-size: 1.5vw;
+  margin-top: 4vw;
+}
+
+li{
+  margin-bottom: 1rem;
+}
+
+div .button-field button{
+  background-color: #00D646;
+  margin-right: 2vh;
+}
+
+input+label{
+  margin : 1vh 5vw;
+}
+
+#homelist a{
+  color : black;
+  font-size: 4vh;
+  margin-left: 5vh
+}
+
+#homelist a i{
+  font-size: 3vh;
+  padding: 0.5vh;
+  margin-top: 3vh;
+}
+
+#homelist i{
+ color : black;
+  font-size: 5vh;
+}
+
+#homelist ul {
+   margin-top: 15vw;
+  margin-left: 9vh;
+ }
+
+#homelist li{
+  margin-top: 7vw;
+}
+
+/*******FOOTER ************/
+.footer-copyright{
+  background-color: #0b0b0b;
+  text-align: center;
+  color: white;
+  /*top: 100%;*/
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3vh;
+  font-size: 2vh;
+  }
+
+
+/******Desktop**********/
+
+@media screen and (min-width: 800px) {
+  /***header***/
+  header{
+    height: 6vw;
+    margin: 0;
+  }
+
+  #returnMenu{
+    display: none;
+    font-size: 3vw;
+    margin-top: 0.5vw;
+  }
+
+  #logOutButton{
+    display: none;
+  }
+
+  #logoHomepage{
+    display: inline;
+    margin-left: 2vh;
+    margin-top: 2vh;
+    width: 4%;
+  }
+
+  header h3{
+    display: block;
+    margin-top: -7vh;
+    margin-left:11vh;
+    color: white;
+  }
+
+  header h4 {
+    display: block;
+    margin-top: -7vh;
+    margin-left: 147vh;
+    color: white;
+  }
+
+  header h5{
+    display: none;
+  }
+
+  /***Homepage***/
+  #homeLogo {
+    display : none;
+  }
+}

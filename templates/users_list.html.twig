@@ -1,0 +1,83 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+user list
+{% endblock %}
+
+{% block pagename %}
+User list
+{% endblock %}
+{% block username %}
+    {{ currentuser.firstname }} {{ currentuser.lastname }}
+{% endblock %}
+{% block content %}
+  <section class="col s10">
+    <input type="text" name="fakesearchbar" placeholder="FAKE SEARCH BAR">
+
+    {% for user in users %}
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">expand_more</i>
+            <!-- if pour la photo du user  pour un : if user['picture'] != null -->
+            <div id="userPhotoDiv">
+            {% if user['id'] > 10 %}
+                <img id="userPhoto" src="{{ asset('lib/img/Serpico.png') }}"/>
+            {% elseif user['id'] <= 10 %}
+                <img id="userPhoto" src="{{ asset('lib/img/Serpico.png') }}"/>
+            {% endif %}
+            </div>
+            <!-- fin du if pour la photo du user -->
+
+            {{ user['firstname']  }}
+            {{ user['lastname'] | upper }}
+            <br>
+            {{user['position']}}
+
+            {% if user['role'] == 1 %}
+            <span class="new badge" style=" font-size: 2.5vw; background-color: #0daa22; width: 30vw;">Rights :
+            ADMIN
+              <i class="material-icons" >done_all</i>
+
+            {% elseif user['role'] == 2 %}
+            <span class="new badge" style=" font-size: 2.5vw; background-color: #e08516; width: 30vw;">Rights :
+            Manager
+              <i class="material-icons" >done</i>
+              {% elseif user['role'] == 3 %}
+              <span class="new badge" style=" font-size: 2.5vw; background-color: #c60101; width: 30vw;">Rights :
+              user
+                <i class="material-icons " >clear</i>
+            {% endif %}
+          </span>
+            </div>
+        <div id="ListButtons" class="collapsible-body">
+          <div class="row">
+            Autres infos <br>
+            Poids : {{ user['weight']  }}
+          </div>
+          <div class="row">
+            <div class="button-field col s4">
+              <button type="submit" class="validate modify-button" data-user-id={{ user['id'] }}>MODIFY</button>
+            </div>
+            <div class="button-field col s4">
+              <button type="submit" class="validate delete-button" data-user-id={{ user['id'] }}>DELETE</button>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  {% endfor %}
+  <div class="row">
+    <div class="button-field col s10">
+      <form action="{{ url('createUser') }}">
+      <button type="submit" class="validate">ADD USERS</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/users.js') }}"></script>
+{% endblock %}

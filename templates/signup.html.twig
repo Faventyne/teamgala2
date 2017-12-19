@@ -1,0 +1,28 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+Signup
+{% endblock %}
+
+{% block pagename %}
+Signup
+{% endblock %}
+
+{% block content %}
+<img src={{ asset('/lib/img/Serpico.png') }} alt="logo serpico">
+{{ form_start(form) }}
+
+  <form class="col s10">
+    <div id="formulaire" class="row">
+      <div class="input-field col s10">
+        {{ form_row(form.password) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="button-field col s10">
+        {{ form_row(form.submit) }}
+      </div>
+    </div>
+  </form>
+{{ form_end(form)}}
+{% endblock %}

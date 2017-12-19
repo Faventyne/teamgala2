@@ -1,0 +1,29 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block pagename %}
+Login
+{% endblock %}
+
+{% block content %}
+
+  <img src="../web/lib/img/Serpico.png" alt="logo Serpico">
+
+  <form action="{{ path('admin_login_check') }}" method="post" class="col s10">
+      {{ error }}
+    <div class="input-field col s10">
+      <input type="text" name="_username" value="{{ last_username }}" />
+    </div>
+    <div class="input-field col s10">
+      <input type="password" name="_password" value="" />
+    </div>
+    <div class="button-field col s10">
+      <input type="submit" />
+      <input type="hidden" name="_target_path" value="home" />
+    </div>
+  </form>
+
+{% endblock %}

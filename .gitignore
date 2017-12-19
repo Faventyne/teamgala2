@@ -1,0 +1,5 @@
+vendor/
+.idea/
+nbproject/
+Credentials/
+.htaccess

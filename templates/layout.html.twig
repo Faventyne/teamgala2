@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title '' %} - Serpico</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- CSS custom -->
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
+        <!-- CSS Materialize -->
+        <link rel="stylesheet" href="{{ asset('lib/materialize/css/materialize.css') }}">
+        <!-- CSS JQuery UI-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+        <!-- Font awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+        <!-- Materialize icons  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </head>
+    <body>
+      <div id="logOutMenu" class="hiddenMenu">
+         <h1>{% block username %}{% endblock %} </h1>
+        would you like to :
+        <ul>
+          <li><a href="#">Log out</a></li>
+          <br>
+          <li><a href="#">Change your password</a></li>
+          <br>
+          <li><a href="#">Change your photo</a></li>
+        </ul>
+        <div id="closeButton">
+          close
+        </div>
+      </div>
+
+      <header>
+        <a href="{{ path('home') }}"><i id="returnMenu" class="material-icons">home</i></a>
+          <a href="{{ path('home') }}"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" </a><h3>Serpico</h3>
+        <!--<a href="#"><i id="returnPage" class="material-icons">chevron_left</i></a>-->
+        <a href="#"><i id="logOutButton" class="material-icons">person</i></a>
+          <h4> {{ currentuser.firstname }} {{ currentuser.lastname }} </h4>
+
+        <div class="currentPage">
+          {% block pagename %}{% endblock %}
+        </div>
+          <h5>{{ currentuser.firstname }} {{ currentuser.lastname }}</h5>
+      </header>
+
+
+
+        {% block content %}{% endblock %}
+
+        <!-- CDN : jquery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>
+        <!-- CDN : script Materialize -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <!-- CDN JQuery UI -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+        <!-- header custom js -->
+        <script src="{{ asset('js/header_Log_Out.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+      <footer>
+          <div class="footer-copyright">
+              <div class="container">
+                  © <script type="text/javascript">document.write(new Date().getFullYear());</script> Copyright Team GALA
+              </div>
+          </div>
+      </footer>
+    </body>
+</html>

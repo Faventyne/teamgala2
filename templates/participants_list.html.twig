@@ -1,0 +1,51 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+Select participants
+{% endblock %}
+
+
+{% block pagename %}
+Select participants
+{% endblock %}
+{% block username %}
+    {{ currentuser.firstname }} {{ currentuser.lastname }}
+{% endblock %}
+
+{% block content %}
+  <section class="col s10">
+      {#{{ form_start(form,{'attr': {'class': 'foo'}}) }}#}
+    <input type="text" name="fakesearchbar" placeholder="FAKE SEARCH BAR">
+    {% for participant in participants %}
+      <ul class="collection">
+        <li class="collection-item">
+            {{ participant['firstname']  }}
+            {{ participant['lastname'] | upper }}
+            <br>
+            <br>
+              {{participant['position']}}
+            <span class="secondary-content" >
+
+              <button class="waves-effect waves-light btn action-button" data-participant-id={{ participant['id'] }}>ADD</button>
+              <!-- le if sera pour ajoute ou non  -->
+
+            </span>
+        </li>
+      </ul>
+    {% endfor %}
+<div class="fixed-action-btn">
+
+    {#{{ form_row(form.submit,{'attr': {'class': 'waves-effect waves-light btn-large'}}) }}#}
+
+        <button type="submit" class="waves-effect waves-light btn-large">CREATE ACTIVITY</button>
+
+
+</div>
+{#{{ form_end(form) }}#}
+</section>
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/participants.js') }}"></script>
+{% endblock %}

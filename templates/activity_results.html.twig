@@ -1,0 +1,26 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Activity Results
+{% endblock %}
+
+{%  block pagename %}
+    Results : {{ activity.name }}
+{% endblock %}
+
+{% block username %}
+    {{ currentuser.firstname }} {{ currentuser.lastname }}
+{% endblock %}
+
+{% block content %}
+
+    {% for AU in activityUser %}
+        {% for participant in participants %}
+            {% if participant.Id == AU.usrId %}
+                {{participant.firstname}} {{participant.lastname}}
+            {% endif %}
+        {% endfor %}
+        {{ AU.result }}
+    {% endfor %}
+
+{% endblock %}
