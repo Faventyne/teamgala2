@@ -263,7 +263,8 @@ class ActivityController extends MasterController
                 $result['stage']['participants']=$participants;
             }
         //}
-
+        print_r($result);
+        die;
         return $app['twig']->render('activity_grade.html.twig',
             [
                 'form' => $gradeForm->createView(),
