@@ -100,9 +100,13 @@ header h5{
   margin-left: 5vw;
   z-index: 3;
   background-color: #e1eae5;
-  border: 1vw solid black;
-  border-radius: 10vw;
-  box-shadow: 1vw 1vw 5vw black;
+  border: 3vw solid black;
+  border-radius: 5vw;
+  border-top-right-radius: 10vw;
+  border-bottom-left-radius: 10vw;
+  box-shadow: 0vw 0vw 3vw black;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 #logOutMenu h1{
   font-size: 10vw;
@@ -248,7 +252,7 @@ margin: 0px;
   margin-right: -2vw;
   padding-top: 0.5vw;
   border-radius: 25px;
-  margin-left: 8vw; 
+  margin-left: 8vw;
   margin-top: 7vw;
 }
 #alexButton a{
@@ -322,30 +326,29 @@ input+label{
 
 @media screen and (min-width: 1200px) {
   /***header***/
-  header{
+  header {
     height: 6vw;
     margin: 0;
   }
 
-  #returnMenu{
+  #returnMenu {
     display: none;
     font-size: 3vw;
     margin-top: 0.5vw;
   }
 
-  #logOutButton{
+  #logOutButton {
     display: none;
   }
 
- #logOutButtonDT{
+  #logOutButtonDT {
     display: inline;
     margin-left: 2vh;
     margin-top: 2vh;
     width: 4%;
   }
 
-
-  #logoHomepage{
+  #logoHomepage {
     display: block;
     margin-left: 2vh;
     margin-top: 0vh;
@@ -353,10 +356,10 @@ input+label{
     color: white;
   }
 
-  header h3{
+  header h3 {
     display: block;
     margin-top: -5vh;
-    margin-left:11vh;
+    margin-left: 11vh;
     color: white;
   }
 
@@ -369,15 +372,17 @@ input+label{
     color: white;
   }
 
-  header h5{
+  header h5 {
     display: none;
   }
 
   /***Homepage***/
   #homeLogo {
-    display : none;
+    display: none;
   }
-  #homelist ul li{
+
+  #homelist ul li {
     margin-top: 20vh;
   }
+
 }
