@@ -319,7 +319,6 @@ class ActivityController extends MasterController
                 $user = $repoU->findOneById($id);
                 $weight = $user->getWeightIni($id);
                 //$grade = $repoG->finOneById
-
                 //foreach ($)
 
 
