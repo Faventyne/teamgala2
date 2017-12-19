@@ -27,6 +27,10 @@ $routeProfile->bind('profile') ;
 $routeMyActivities = $app->get('/myactivities', "Controller\ActivityController::getAllUserActivitiesAction") ;
 $routeMyActivities->bind('myActivities') ;
 
+// My activities page
+$routeMyActivities = $app->post('/myactivities', "Controller\ActivityController::saveGradesAction") ;
+$routeMyActivities->bind('afterGrading') ;
+
 // Organization activities page
 $routeMyActivities = $app->get('/activities/all', "Controller\ActivityController::getAllOrganizationActivitiesAction") ;
 $routeMyActivities->bind('allActivities') ;
@@ -54,7 +58,7 @@ $routeActivityView = $app->get('/activity/view', "Controller\ActivityController:
 $routeActivityView->bind('activityView') ;
 
 // Activity results page
-$routeActivityResults = $app->get('/activity/results', "Controller\ActivityController::resultsAction") ;
+$routeActivityResults = $app->get('/activity/results?actId={actId}', "Controller\ActivityController::resultsAction") ;
 $routeActivityResults->bind('activityResults') ;
 
 // Settings organization page

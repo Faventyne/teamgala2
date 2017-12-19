@@ -263,8 +263,7 @@ class ActivityController extends MasterController
                 $result['stage']['participants']=$participants;
             }
         //}
-        print_r($result);
-        die;
+
         return $app['twig']->render('activity_grade.html.twig',
             [
                 'form' => $gradeForm->createView(),
@@ -300,32 +299,70 @@ class ActivityController extends MasterController
         $criteria = $repoC->findByActId($actId);
 
         //getting all grades
-        $grades = $repoG->findByActId($actId);
+        $grades = $repoG->findByActid($actId);
 
         /*****COMPUTE THE RESULTS****************************/
 
         //foreach ($stage as stage){
+        $results=[];
+        foreach ($criteria as $criterion) {
 
-        foreach ($criteria as $criterion){
+            $critWeight = $criterion->getWeight();
+            $gradesMatrix = [];
+            $weights = [];
 
-            $cweight = $criterion->getWeight();
 
-            foreach ($activityUsers as $au){
+            foreach ($activityUsers as $au) {
 
-                $id = $au->getUsrId();
-                $user = $repoU->findOneById($id);
-                $weight = $user->getWeightIni($id);
-                //$grade = $repoG->finOneById
-                //foreach ($)
+                $usrId = $au->getUsrId();
 
+
+                $userGrades = $repoG->findBy(
+                    ['actid' => $actId,
+                        'parid' => $usrId]);
+
+                $gradesRowMatrix = [];
+
+                foreach ($userGrades as $gradeElmt) {
+                    $gradesRowMatrix[] = $gradeElmt->getValue();
+                }
+
+                $gradesMatrix[] = $gradesRowMatrix;
+
+
+                //get weights
+                $user = $repoU->findOneById($usrId);
+                $userWeight = $user->getWeightIni();
+                $weights[] = $userWeight;
+                //get users Id
+                $users[] = $usrId;
+            }
+            //print_r($gradesMatrix);
+            //print_r($weights);
+            //die;
+        }
+
+        $results = [];
+
+        for ($i = 0; $i < sizeof($weights); $i++) {
+            $results[$i] = 0;
+            for ($j = 0; $j < sizeof($weights); $j++) {
+                $results[$i] += $gradesMatrix[$j][$i] * $weights[$j];
 
             }
+
+            $results[$i] /= array_sum($weights);
+        }
+
+        //Insert in DB
+
+        foreach ($activityUsers as $key => $au){
+
+            $au->setValue($results[$key]);
+
         }
 
 
-
-
-        $repoU = $em->getRepository(User::class);
         //get the datas concerning the participants
         $participants = [];
         foreach ($activityUsers as $au) {
