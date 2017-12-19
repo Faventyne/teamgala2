@@ -48,6 +48,7 @@
           <a href="{{ path('home') }}"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" </a><h3>Serpico</h3>
         <!--<a href="#"><i id="returnPage" class="material-icons">chevron_left</i></a>-->
         <a href="#"><i id="logOutButton" class="material-icons menuHidden">person</i></a>
+          <a href="{{ path('logout') }}"><i  id="logOutButtonDT" class="fa fa-sign-out" aria-hidden="true"></i>
           {% if currentuser != null %}
           <h4> {{ currentuser.firstname }} {{ currentuser.lastname }} </h4>
           {% endif %}
