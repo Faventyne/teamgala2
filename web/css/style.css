@@ -234,11 +234,15 @@ img{
 }
 /*** FORM LOGIN*/
 
-form{
+#formLogin{
   margin-left: 15%;
   margin-top: 15%;
   font-size: 3vw;
+  width: 50%;
+  margin: auto;
 }
+
+
 
 #disabled{
     font-size: 1vw;
@@ -359,7 +363,7 @@ input+label{
 }
 
 #homelist ul {
-   margin-top: -12vw;
+   margin-top: -10vw;
   margin-left: 9vh;
  }
 
