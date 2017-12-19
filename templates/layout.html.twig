@@ -28,29 +28,53 @@
         </script>
     </head>
     <body>
-      <div id="logOutMenu" class="hiddenMenu">
-         <h1>{% block username %}{% endblock %} </h1>
-        would you like to :
+      <div id="logOutMenu" class="HiddenMenu">
+        {% if currentuser != null %}
+        <h5>{{ currentuser.firstname }} {{ currentuser.lastname }}</h5>
+        {% endif %}
+        Are you sure you would you like to Log Out?
         <ul>
-          <li><a href="#">Log out</a></li>
-          <br>
-          <li><a href="#">Change your password</a></li>
-          <br>
-          <li><a href="#">Change your photo</a></li>
+          <li><a href="{{ path('logout') }}">Log out</a></li>
         </ul>
-        <div id="closeButton">
+        <div id="logOutCloseButton">
+          close
+        </div>
+      </div>
+
+<!-- comment seperating the two slided in menus -->
+
+
+      <div id="dropDownOptions" class="HiddenMenu">
+        <!-- phot du mec, ajout de if si jamais on fait lajout de photos  -->
+        <div id="popUpPhotoDiv">
+          <img id="popUpPhoto" src="{{ asset('lib/img/Serpico.png') }}"/>
+        </div>
+            <!-- son nom -->
+        <h1>{% block username %}{% endblock %}</h1>
+         <h1>Menu </h1>
+         <ul>
+             <li><i class="fa fa-user" aria-hidden="true"></i><a href="{{ path('profile') }}"> MY PROFILE </a></li>
+             <li><i class="fa fa-briefcase" aria-hidden="true"></i><a href="{{ path('myActivities') }}">MY ACTIVITIES</a></li>
+             <li><i class="fa fa-cog" aria-hidden="true"></i><a href="{{ path('createUser') }}"> SETTINGS</a></li>
+         </ul>
+        <div id="homeCloseButton">
           close
         </div>
       </div>
 
       <header>
-        <a href="{{ path('home') }}"><i id="returnMenu" class="material-icons">home</i></a>
-          <a href="{{ path('home') }}"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" </a><h3>Serpico</h3>
-        <!--<a href="#"><i id="returnPage" class="material-icons">chevron_left</i></a>-->
-        <a href="#"><i id="logOutButton" class="material-icons">person</i></a>
-          {% if currentuser != null %}
-          <h4> {{ currentuser.firstname }} {{ currentuser.lastname }} </h4>
-          {% endif %}
+        <!-- home menu icon/button for moblie -->
+        <i id="returnMenu" class="material-icons">home</i>
+        <!-- home logo button for DT version -->
+        <a href="{{ path('home') }}"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" ></a><h3>Serpico</h3>
+        <!-- log out icon/button for mobil version -->
+        <i id="logOutButton" class="material-icons logOutHiddenMenu">person</i>
+        <!--  -->
+        <a href="{{ path('logout') }}"><i  id="logOutButtonDT" class="fa fa-sign-out" aria-hidden="true"></i></a>
+
+        {% if currentuser != null %}
+        <h4> {{ currentuser.firstname }} {{ currentuser.lastname }} </h4>
+        {% endif %}
 
         <div class="currentPage">
           {% block pagename %}{% endblock %}

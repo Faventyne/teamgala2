@@ -24,7 +24,9 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class UserController extends MasterController
 {
 
-
+    public function logoutAction(Request $request, Application $app){
+        return $app->redirect($app['url_generator']->generate('login'));;
+    }
     /*********** ADDITION, MODIFICATION, DELETION AND DISPLAY OF USERS *****************/
 
     //Adds user to current organization (limited to HR)

@@ -66,8 +66,12 @@ header h5{
   color: white;
   margin-left: 85vw;
   text-shadow: 3px 3px 10px black;
-
 }
+
+#logOutButtonDT{
+  display: none;
+}
+
 .currentPage{
   height: 10vw;
   width: 60vw;
@@ -79,29 +83,31 @@ header h5{
 }
 
 
-.hiddenMenu{
+.HiddenMenu{
   position: absolute;
   display: none;
-
 }
+
+/*  for the drop down log out menu */
 
 #logOutMenu{
   padding: 10vw;
   font-size: 5vw;
   position: absolute;
-  height: 80vh;
-  width: 90vw;
+  height: 100vh;
+  width: 95vw;
   margin: auto;
-  margin-top: 10vh;
-  margin-left: 5vw;
-  z-index: 3;
+  margin-top: 0vh;
+  margin-left: 7vw;
+  z-index: 4;
   background-color: #e1eae5;
-  border: 1vw solid black;
-  border-radius: 10vw;
-  box-shadow: 1vw 1vw 5vw black;
+  border-left: 2vw outset grey;
+  box-shadow: 0vw 2vw 3vw grey;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 #logOutMenu h1{
-  font-size: 10vw;
+  font-size: 8vw;
   text-shadow: 0.5vw 1vw 3vw black;
 }
 
@@ -114,15 +120,77 @@ header h5{
   border-radius: 5vw;
   padding-left: 1vw;
   text-align: center;
+  border: 1px solid black;
+}
+/* for the drop down home menu */
+#dropDownOptions{
+  padding: 10vw;
+  font-size: 5vw;
+  position: absolute;
+  height: 100vh;
+  width: 95vw;
+  margin: auto;
+  margin-top: 0vh;
+  margin-left: -2vw;
+  z-index: 3;
+  background-color: #e1eae5;
+  border-right: 2vw outset grey;
+  box-shadow: 0vw 2vw 3vw grey;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+#dropDownOptions h1{
+  margin-left: 20vw;
+  font-size: 8vw;
+  text-shadow: 0.5vw 1vw 3vw black;
+  margin-bottom: 5vw;
 }
 
-#closeButton{
+#dropDownOptions ul{
+  font-size: 5vw;
+  margin-left: -1vw;
+}
+#dropDownOptions li{
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5vw;
+  padding-left: 1vw;
+  text-align: center;
+}
+
+#logOutCloseButton{
   height: 10vw;
   margin-top: 25vw;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5vw;
   padding-top: 1vw;
   text-align: center;
+}
+
+#homeCloseButton{
+  height: 10vw;
+  margin-top: 25vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5vw;
+  padding-top: 1vw;
+  text-align: center;
+}
+
+#popUpPhoto{
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+}
+#popUpPhotoDiv{
+  position: absolute;
+  border: 1px solid darkgrey;
+  background-color: darkgrey;
+  border-radius: 50%;
+  height: 20vw;
+  width: 20vw;
+  padding: 0px;
+  margin-top: 8vw;
+  margin-left: -2vw;
+  overflow: hidden;
 }
 
 
@@ -159,7 +227,6 @@ margin-right: 25vw;
 
 /************************************************************************************/
 
-
 img{
   width: 30%;
   margin-left: 37%;
@@ -167,11 +234,15 @@ img{
 }
 /*** FORM LOGIN*/
 
-form{
+#formLogin{
   margin-left: 15%;
   margin-top: 15%;
   font-size: 3vw;
+  width: 50%;
+  margin: auto;
 }
+
+
 
 #disabled{
     font-size: 1vw;
@@ -245,7 +316,7 @@ margin: 0px;
   margin-right: -2vw;
   padding-top: 0.5vw;
   border-radius: 25px;
-  margin-left: 8vw; 
+  margin-left: 8vw;
   margin-top: 7vw;
 }
 #alexButton a{
@@ -277,14 +348,14 @@ input+label{
 #homelist a{
   color : black;
   font-size: 4vh;
-  margin-left: 5vh
+  margin-left: 1vh
 }
 
-#homelist a i{
+/*#homelist a i{
   font-size: 3vh;
   padding: 0.5vh;
   margin-top: 3vh;
-}
+}*/
 
 #homelist i{
  color : black;
@@ -292,7 +363,7 @@ input+label{
 }
 
 #homelist ul {
-   margin-top: 15vw;
+   margin-top: -10vw;
   margin-left: 9vh;
  }
 
@@ -317,50 +388,73 @@ input+label{
 
 /******Desktop**********/
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1200px) {
   /***header***/
-  header{
-    height: 6vw;
+  header {
+    height: 8vw;
     margin: 0;
   }
 
-  #returnMenu{
+  #returnMenu {
     display: none;
     font-size: 3vw;
     margin-top: 0.5vw;
   }
 
-  #logOutButton{
+  #logOutButton {
     display: none;
   }
 
-  #logoHomepage{
-    display: inline;
-    margin-left: 2vh;
-    margin-top: 2vh;
-    width: 4%;
+  #logOutButtonDT {
+    position: absolute;
+    display: block;
+    margin-left: 93vw;
+    margin-top: -6vw;
+    font-size: 5vw;
+    color: white;
   }
 
-  header h3{
+  #logoHomepage {
     display: block;
-    margin-top: -7vh;
-    margin-left:11vh;
+    margin-left: 2vw;
+    margin-top: 0vh;
+    width: 8vw;
+  }
+
+  header h3 {
+    display: block;
+    margin-top: -5vw;
+    margin-left: 10vw;
     color: white;
   }
 
   header h4 {
+    margin-top: -4.5vw;
     display: block;
-    margin-top: -7vh;
-    margin-left: 147vh;
+    text-align: right;
+    margin-right: 10%;
     color: white;
   }
 
-  header h5{
+  header h5 {
     display: none;
   }
 
   /***Homepage***/
   #homeLogo {
-    display : none;
+    display: none;
   }
+
+  #homelist{
+    margin-top: 20vw;
+  }
+  #homelist ul li {
+    margin-top: 5vw;
+  }
+
+  .currentPage{
+    margin-top: -9vw;
+    margin-left: 25vw;
+  }
+
 }

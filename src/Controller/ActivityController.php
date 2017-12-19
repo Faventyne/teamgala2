@@ -230,6 +230,21 @@ class ActivityController extends MasterController
             $participants[] = $participant->toArray();
 
         }
+        //Add the grade of the participant : new name for the list of participants : $part
+        $part=[];
+        foreach ($participants as $participant) {
+            $id = $participant['usr_id'];
+            $connected = $app['security.token_storage']->getToken()->getUser()->getId();
+            $sql = "SELECT grd_value FROM grade WHERE grd_graded_id=:id AND activity_user_activity_act_id=:actId AND activity_user_user_usr_id=:connected";
+            $pdoStatement = $app['db']->prepare($sql);
+            $pdoStatement->bindValue(':id',$id);
+            $pdoStatement->bindValue(':actId', $actId);
+            $pdoStatement->bindValue(':connected', $connected);
+            $pdoStatement->execute();
+            $grd = $pdoStatement->fetch();
+            $participant['grade']=$grd['grd_value'];
+            $part[]=$participant;
+        };
 
         //Get all criteria
         $repository = $entityManager->getRepository(\Model\Criterion::class);
@@ -244,7 +259,9 @@ class ActivityController extends MasterController
         $formFactory = $app['form.factory'] ;
         $gradeForm = $formFactory->create(GradeForm::class, $grade, ['standalone'=>true]);
         $gradeForm->handleRequest($request);
-
+        
+        
+        
         if ($gradeForm->isSubmitted()){
 
             print_r("Coucou");
@@ -260,7 +277,7 @@ class ActivityController extends MasterController
                 //$result['stage']['name']=$stage;
             foreach($criteria as $criterion){
                 $result['stage']['criterion']=$criterion;
-                $result['stage']['participants']=$participants;
+                $result['stage']['participants']=$part;
             }
         //}
 

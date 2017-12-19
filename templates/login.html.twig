@@ -10,9 +10,7 @@ Login
 
 {% block content %}
 
-  <img src="../web/lib/img/Serpico.png" alt="logo Serpico">
-
-  <form action="{{ path('admin_login_check') }}" method="post" class="col s10">
+  <form id="formLogin" action="{{ path('admin_login_check') }}" method="post" class="col s10">
       {{ error }}
     <div class="input-field col s10">
       <input type="text" name="_username" value="{{ last_username }}" />
