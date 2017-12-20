@@ -24,9 +24,7 @@ box-shadow: 0px 5px 15px #black;
 height: 15vw;
 }
 
-header h3{
-  display: none;
-}
+
 
 header h4{
   display: none;
@@ -35,9 +33,9 @@ header h4{
 header h5{
   position: absolute;
   color: white;
-  font-size: 1.5vh;
+  font-size: 3vw;
   margin-top: 0vh;
-  margin-left: 12vh;
+  margin-left: 50px;
 }
 
 #logoHomepage{
@@ -51,14 +49,7 @@ header h5{
   color: white;
   text-shadow: 3px 3px 10px black;
 }
-#returnPage{
-  margin-top: 2vw;
-  position: absolute;
-  margin-left: 10vw;
-  font-size: 10vw;
-  color: white;
-  text-shadow: 3px 3px 10px black;
-}
+
 #logOutButton{
   margin-top: 2vw;
   position: absolute;
@@ -425,10 +416,13 @@ display: none;
   /* all elements in the header for the mobile version*/
 
   header {
-    height: 8vw;
+    height: 180px;
     margin: 0;
   }
-
+  #DTuser{
+    display: flex;
+    margin-left: 250px;
+  }
   #returnMenu {
     display: none;
     font-size: 3vw;
@@ -442,31 +436,25 @@ display: none;
   #logOutButtonDT {
     position: absolute;
     display: block;
-    margin-left: 93vw;
-    margin-top: -6vw;
-    font-size: 5vw;
+    margin-top: -3.5vw;
+    margin-left: 35vw;
+    font-size: 4vw;
     color: white;
   }
 
   #logoHomepage {
-    display: block;
-    margin-left: 2vw;
+    display: inline;
     margin-top: 0vh;
-    width: 8vw;
+    margin-left: 50px;
+    width: 150px;
   }
 
-  header h3 {
-    display: block;
-    margin-top: -5vw;
-    margin-left: 10vw;
-    color: white;
-  }
 
   header h4 {
-    margin-top: -4.5vw;
     display: block;
-    text-align: right;
-    margin-right: 10%;
+    font-size: 3vw;
+    margin-top: -140px;
+    margin-left: 80px;
     color: white;
   }
 
@@ -481,18 +469,18 @@ display: none;
     margin: 0px;
   }
   #headerPhotoDiv{
-    display:block;
+    display: flex;
     position: absolute;
     border: 1px solid darkgrey;
     background-color: darkgrey;
     border-radius: 50%;
-    height: 6vw;
-    width: 6vw;
+    height: 60px;
+    width: 60px;
     padding: 0px;
-    margin-top: 8vw;
-    margin-left: -2vw;
+    margin-top: -140px;
     overflow: hidden;
   }
+  /*** fin du geader DT */
 
   /***Homepage***/
   #homeLogo {
