@@ -447,16 +447,15 @@ class ActivityController extends MasterController
     if($role != 4) {
 
         $sql = "SELECT * FROM activity 
-            INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
+            INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id 
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
-            INNER JOIN user ON user.usr_id=activity_user.user_usr_id 
-            WHERE user.usr_id=:id 
+            WHERE activity_user.user_usr_id=:id 
             ORDER BY activity.act_id";
     } else {
-        $sql = "SELECT * FROM activity 
+        $sql = "SELECT act_name,act_id,act_status,act_objectives,act_inserted,act_quotes_deadline,cri_gradetype,cri_lowerbound,cri_upperbound,cri_step FROM activity
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
-            INNER JOIN user ON user.usr_id=activity_user.user_usr_id 
+            GROUP BY (activity.act_id)
             ORDER BY activity.act_id";
     }
         $pdoStatement = $app['db']->prepare($sql);
@@ -488,7 +487,6 @@ class ActivityController extends MasterController
             $resultAdmin = $pdoStatement->fetchAll();
             $finalResult=[];
             foreach ($resultAdmin as $key => $actAdmin){
-
                 $actAdmin['isParticipant'] = 0 ;
                 foreach ($result as $key => $act)
                     if ($actAdmin['act_id'] == $act['act_id']) {

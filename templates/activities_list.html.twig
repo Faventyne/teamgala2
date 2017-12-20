@@ -41,7 +41,7 @@ Activity list
                   {% endif %}
 
 
-                    {% if activity['isParticipant'] == 1 %}
+                    {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR']))%}
                     <div class="button-field col s5">
                       <form action="{{ url('activityGrade',{'actId' : activity['act_id']})}}">
                         <button type="submit" class="validate"> GRADE </button>
@@ -60,7 +60,7 @@ Activity list
 
           </div>
 
-          <div class="collapsible-body">autres infos
+          <div class="collapsible-body">details
             <div class="row">
             {{ activity['act_objectives']  }}
             <br>
