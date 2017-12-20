@@ -308,7 +308,7 @@ class ActivityController extends MasterController
 
         //We compute the results until grading is not ended (here, as there are no third party
         //the square matrix condition is enough to check)
-        if(sizeof($grades)!=pow(sizeof($activityUsers),2))
+        if($repoAU->findOneByActId($actId)->getResult() == null)
             {
 
                 //Computing results
@@ -511,7 +511,7 @@ class ActivityController extends MasterController
 
         //Insert Grades
         $entityManager = $this->getEntityManager($app);
-        $repository = $entityManager->getRepository(Grade::class);
+        $repoG = $entityManager->getRepository(Grade::class);
 
         foreach ($_POST as $key => $value){
             if($key=="usrId"){
@@ -554,16 +554,7 @@ class ActivityController extends MasterController
             $entityManager->flush();
 
             //Check if all grades have been submitted, then result can now be computed
-            $data = $repository->findByActid($actId);
-            $k=0;
-            //print_r($data);
-            //die;
-            foreach ($data as $participantGrade)
-            {
-                if ($participantGrade->getValue()!= null)
-                {$k += 1;}
-            }
-            if ($k == sizeof($data))
+            if(sizeof($repoG->findByActid($actId)) == pow(sizeof($entityManager->getRepository(ActivityUser::class)->findByActId($actId)),2))
             {
                 $activity->setStatus(2);
                 $entityManager->persist($activity);
