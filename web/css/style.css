@@ -400,9 +400,9 @@ input+label{
 }
 
 /******CRITERIA LIST********/
-#criteriaForm{
-  width: 50%;
-  margin: auto;
+#criteriaForm form{
+  width: 70%;
+  margin-left: 3vw;
 }
 
 /*******FOOTER ************/
