@@ -35,5 +35,20 @@ $(function() {
   }
 });
 
+$( window ).resize(function() {
+if (window.innerWidth > 800) {
+   $("#header").hide();
+   $("#nav").show();
+}
+});
+$( window ).resize(function() {
+if (window.innerWidth < 800) {
+   $("#header").show();
+   $("#nav").hide();
+}
+});
+
+
+
 
   });  // CAUTION leave this at the end of the script CAUTION
