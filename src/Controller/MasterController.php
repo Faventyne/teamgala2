@@ -36,7 +36,7 @@ abstract class MasterController
     {
         // Get current authentication token
         $user = self::getAuthorizedUser($app);
-        return $user ? $user->toArray($app) : null;
+        return $user ? $user->toArray() : null;
     }
 
 }

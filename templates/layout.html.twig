@@ -29,12 +29,12 @@
     </head>
     <body>
       <div id="logOutMenu" class="HiddenMenu">
-        {% if currentuser != null %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <h5>{{ currentuser.firstname }} {{ currentuser.lastname }}</h5>
         {% endif %}
         Are you sure you would you like to Log Out?
         <ul>
-          <li><a href="{{ path('logout') }}">Log out</a></li>
+          <li><a href="{{ path('admin_logout') }}">Log out</a></li>
         </ul>
         <div id="logOutCloseButton">
           close
