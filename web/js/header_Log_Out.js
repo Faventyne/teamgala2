@@ -1,16 +1,32 @@
 $(function() {
-  $(".menuHidden").on("click", function() {
-    $("#logOutButton").removeClass('menuHidden')
-    $("#logOutButton").addClass('menuShown')
-    $("#logOutMenu").slideDown(500);
 
-  });
-  $("#closeButton, .menuShown").on("click", function() {
-    $("#logOutButton").removeClass('menuShown')
-    $("#logOutButton").addClass('menuHidden')
-    $("#logOutMenu").slideUp(500);
 
+// for the drop down log out settings
+  $("#logOutButton").on("click", function() {
+    //$("#logOutMenu").slideDown(500);
+     $("#logOutMenu").show("slide", { direction: "right" }, 1000);
   });
+
+  $("#logOutCloseButton").on("click", function() {
+    $("#logOutMenu").hide("slide", { direction: "right" }, 1000);
+  });
+
+
+// for the drop down home menu
+  $("#returnMenu").on("click", function() {
+    $("#dropDownOptions").show("slide", { direction: "left" }, 500);
+  });
+
+  $("#homeCloseButton").on("click", function() {
+    $("#dropDownOptions").hide("slide", { direction: "left" }, 500);
+  });
+
+//
+
+
+
+
+
 
 
   $( window ).resize(function() {

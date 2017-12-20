@@ -316,47 +316,123 @@ class ActivityController extends MasterController
         $criteria = $repoC->findByActId($actId);
 
         //getting all grades
-        $grades = $repoG->findByActId($actId);
+        $grades = $repoG->findByActid($actId);
 
-        /*****COMPUTE THE RESULTS****************************/
+        //We compute the results until grading is not ended (here, as there are no third party
+        //the square matrix condition is enough to check)
+        if(sizeof($grades)!=pow(sizeof($activityUsers),2))
+            {
 
-        //foreach ($stage as stage){
+                //Computing results
 
-        foreach ($criteria as $criterion){
+                    //1 - retrieving relevant data
 
-            $cweight = $criterion->getWeight();
+                //foreach ($stage as stage){
+                    $results = [];
+                    foreach ($criteria as $criterion) {
 
-            foreach ($activityUsers as $au){
-
-                $id = $au->getUsrId();
-                $user = $repoU->findOneById($id);
-                $weight = $user->getWeightIni($id);
-                //$grade = $repoG->finOneById
-                //foreach ($)
+                        $critWeight = $criterion->getWeight();
+                        $gradesMatrix = [];
+                        $weights = [];
 
 
+                        foreach ($activityUsers as $au) {
+
+                            $usrId = $au->getUsrId();
+
+
+                            $userGrades = $repoG->findBy(
+                                ['actid' => $actId,
+                                    'parid' => $usrId]);
+
+                            $gradesRowMatrix = [];
+
+                            foreach ($userGrades as $gradeElmt) {
+                                $gradesRowMatrix[] = $gradeElmt->getValue();
+                            }
+
+                            $gradesMatrix[] = $gradesRowMatrix;
+
+
+                            //get weights
+                            $user = $repoU->findOneById($usrId);
+                            $userWeight = $user->getWeightIni();
+                            $weights[] = $userWeight;
+                            //get users Id
+                            $users[] = $usrId;
+                        }
+                    }
+
+                //}
+
+                $results = [];
+
+                for ($i = 0; $i < sizeof($weights); $i++)
+                {
+                    $results[$i] = 0;
+                    for ($j = 0; $j < sizeof($weights); $j++) {
+                        $results[$i] += $gradesMatrix[$j][$i] * $weights[$j];
+
+                    }
+
+                    $results[$i] /= array_sum($weights);
+
+                }
+
+                    // 2 - Insert in DB participant results
+
+                $renderedData = [];
+                foreach ($activityUsers as $key => $activityUser) {
+
+                    $id = $activityUser->getUsrId();
+                    $user = $repoU->findOneById($id);
+
+                    $firstname = $user->getFirstname();
+
+                    $lastname = $user->getLastname();
+                    $result = $results[$key];
+                    $activityUser->setResult($results[$key]);
+                    //$entityManager->persist($activityUser);
+
+                    $renderedData[] =
+                        [
+                            'firstname' => $firstname,
+                            'lastname' => $lastname,
+                            'result' => $result
+                        ];
+                }
+
+                $entityManager->flush();
+
+            } else {
+
+                $renderedData = [];
+                foreach ($activityUsers as $key => $activityUser)
+                {
+
+                    $id = $activityUser->getUsrId();
+                    $user = $repoU->findOneById($id);
+                    $firstname = $user->getFirstname();
+                    $lastname = $user->getLastname();
+                    $result = $activityUser->getResult();
+                    $renderedData[] =
+                        [
+                            'firstname' => $firstname,
+                            'lastname' => $lastname,
+                            'result' => $result
+                        ];
+                }
             }
-        }
 
 
+            //rendering
 
-
-        $repoU = $em->getRepository(User::class);
-        //get the datas concerning the participants
-        $participants = [];
-        foreach ($activityUsers as $au) {
-            $id = $au->getUsrId();
-            $user = $repoU->findOneById($id);
-            $participants[]=$user;
-        }
-        
-        //rendering
         return $app['twig']->render('activity_results.html.twig',
             [
                 'activity' => $activity,
-                'activityUser' => $activityUser,
-                'participants' => $participants,           
-            ]);
+                'data' => $renderedData
+            ]
+        );
     }
 
     // Display all organization activities (limited to HR)

@@ -189,7 +189,7 @@ class Grade extends DbObject
      */
     public function setParId($parid)
     {
-        $this->par_id = $parid;
+        $this->parid = $parid;
     }
 
     /**

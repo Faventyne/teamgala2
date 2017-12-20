@@ -14,13 +14,17 @@
 
 {% block content %}
 
-    {% for AU in activityUser %}
-        {% for participant in participants %}
-            {% if participant.Id == AU.usrId %}
-                {{participant.firstname}} {{participant.lastname}}
-            {% endif %}
-        {% endfor %}
-        {{ AU.result }}
+
+
+    {% for user in data %}
+        <div class="row">
+            <div class="button-field col s5 m5">
+                {{ user.firstname }} {{ user.lastname }}
+            </div>
+            <div class="button-field col s5 m5">
+                {{ user.result|round(2) }}
+            </div>
+        </div>
     {% endfor %}
 
 {% endblock %}
