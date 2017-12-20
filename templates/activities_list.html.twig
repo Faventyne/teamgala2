@@ -49,14 +49,14 @@ Activity list
                     </div>
                     {% endif %}
 </div>
+              {% if activity['act_status'] == 0 %}
+                <span class="new badge light-blue darken-2"> To be graded </span>
+              {% elseif activity['act_status'] == 1 %}
+                <span class="new badge indigo"> On grade </span>
+              {% elseif activity['act_status'] == 2 %}
+                <span class="new badge green darken-3"> Graded </span>
+              {% endif %}
 
-              <span class="new badge">
-                  {% if activity['act_status'] == 0 %}
-                    To be graded
-                  {% else %}
-                    Graded
-                  {% endif %}
-              </span>
 
           </div>
 
