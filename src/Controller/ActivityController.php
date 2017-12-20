@@ -535,10 +535,16 @@ class ActivityController extends MasterController
                     $grade->setValue(floatval($value));
                     $entityManager->persist($grade);
                     //Change activity status to 'On Grade'
-                    $repoA = $entityManager->getRepository(Activity::class);
-                    $repoA->findbyId($actId)->setStatus(1);
-                } 
-            } 
+
+
+
+
+                }
+            }
+            $repoA = $entityManager->getRepository(Activity::class);
+            $activity = $repoA->findOneById($actId);
+            $activity->setStatus(1);
+            $entityManager->persist($activity);
         } else {
             foreach ($_POST as $key => $value){
                 if(is_numeric($key)){

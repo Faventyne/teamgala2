@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
-
 *{
   box-sizing: border-box;
   /*transition-duration: 0.3s;*/
@@ -38,9 +37,7 @@ header h5{
   margin-left: 50px;
 }
 
-#logoHomepage{
-  display: none;
-}
+
 /* jai du faire trois id pour les icons ca marche pas avec materialize pour le css */
 #returnMenu {
   margin-top: 2vw;
@@ -416,35 +413,30 @@ input+label{
   }
 
   /* all elements in the header for the mobile version*/
-.mobileElement{
-}
-#headerPhoto{
-display: none;
-}
-#headerPhotoDiv{
-display: none;
+
+@media screen and (max-width: 800px) {
+#nav{
+  display: none;
 }
 
-/******Desktop**********/
-
+}
 @media screen and (min-width: 800px) {
+
+
   /***header***/
   #logoMain{
     display : none;
   }
-
-  header {
-    height: 180px;
-    margin: 0;
-  }
-  #DTuser{
-    display: flex;
-    margin-left: 250px;
-  }
-  #returnMenu {
+  #returnMenu{
     display: none;
-    font-size: 3vw;
-    margin-top: 0.5vw;
+  }
+  #header{
+    display: none;
+  }
+
+  #headerPhoto{
+    width: 5%;
+    height: 5%;
   }
 
   #logOutButton {
@@ -461,10 +453,19 @@ display: none;
   }
 
   #logoHomepage {
-    display: inline;
-    margin-top: 0vh;
-    margin-left: 50px;
-    width: 150px;
+    margin-top: 10px;
+    width: 50px;
+  }
+  #nav div ul li a:hover{
+    background-color: white;
+    color: black;
+  }
+
+  #serpicoNav{
+    position: absolute;
+    margin-top: -80px;
+    margin-left: 100px;
+
   }
 
 
@@ -480,24 +481,6 @@ display: none;
     display: none;
   }
 
-  #headerPhoto{
-    display:block;
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-  }
-  #headerPhotoDiv{
-    display: flex;
-    position: absolute;
-    border: 1px solid darkgrey;
-    background-color: darkgrey;
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    padding: 0px;
-    margin-top: -140px;
-    overflow: hidden;
-  }
 
   #headerMenuDT {
   margin-top: -8vw;
@@ -509,11 +492,16 @@ display: none;
     display: inline;
     padding-right: 10vw;
     font-size: 3vw;
+    padding-left: 1vw;
     color: grey;
   }
+  #headerMenuDT ul li:hover{
+    background-color: rgba(255, 0, 0, 0.5);
+  }
+
+
   .headerli{
-    border: 1px solid red;
-    border-top-right-radius: 2vw;
+
   }
   /*** fin du header DT */
 
