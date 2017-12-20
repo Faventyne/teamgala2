@@ -9,6 +9,7 @@
 namespace Controller;
 
 
+use Model\ActivityUser;
 use Silex\Application;
 use Form\AddUserForm;
 use Form\LogInForm;
@@ -193,8 +194,21 @@ class UserController extends MasterController
 
     public function displayUser(Request $request, Application $app){
 
+        $entityManager = $this->getEntityManager($app) ;
+        $repository = $entityManager->getRepository(ActivityUser::class);
+        $user = MasterController::getAuthorizedUser($app);
+        $totalActivities = $repository->findByUsrId($user->getId());
+        $gradedActivities = 0;
+        foreach($totalActivities as $activity){
+            if($activity->getResult() != NULL)
+                $gradedActivities += 1;
+        }
+
         return $app['twig']->render('my_profile.html.twig',
             [
+
+                'gradedactivities' => $gradedActivities,
+                'totalactivities' => sizeof($totalActivities)
             ]);
 
     }
