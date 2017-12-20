@@ -405,6 +405,10 @@ input+label{
     font-style: italic;
 }
 
+h2.header{
+  margin-top: 13vw;
+}
+
 /******CRITERIA LIST********/
 #criteriaForm form{
   width: 70%;

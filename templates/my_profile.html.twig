@@ -26,7 +26,11 @@
         <h2 class="header"> {% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ currentuser.firstname }} {{ currentuser.lastname }}{% endif %}</h2>
         <div class="card horizontal">
             <div class="card-image">
-                <img src={{ asset('lib/img/gc.jpg') }}>
+                {% if  currentuser.picture is null %}
+                    <img src="{{ asset('lib/img/')}}{{ currentuser.picture }}">
+                {% else %}
+                        <img src="{{ asset('lib/img/donald.jpg')}}">
+                {% endif %}
             </div>
             <div class="card-stacked">
                 <div class="card-content">
