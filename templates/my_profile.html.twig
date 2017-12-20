@@ -21,10 +21,14 @@
             <li>
                 <!-- son nom -->
                 {% if currentuser != null %}
-                    <h6>{{ currentuser.firstname }} {{ currentuser.lastname }}</h6>
+                    <h6>{{ currentuser.positionName }} </h6>
                 {% endif %}
             </li>
         </ul>
+    </div>
+    <div>
+        Total activities : {{ totalactivities }}
+            Awaiting results : {{ totalactivities - gradedactivities  }}
     </div>
 
 {% endblock %}
