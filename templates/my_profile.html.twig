@@ -11,15 +11,32 @@
     {{ currentuser.firstname }} {{ currentuser.lastname }}
 {% endblock %}
 {% block content %}
-   <div id="PhotoMyProfileDiv">
-    <img id="PhotoMyProfile" src="{{ asset('lib/img/gc.jpg') }}"/>
+   {#<div id="PhotoMyProfileDiv">
+    <img id="PhotoMyProfile" src="{{ asset('lib/img/')}}{{ currentuser.picture }}"/>
  </div>
+    <div id="MyProfileName"> {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <h6>{{ currentuser.firstname }} {{ currentuser.lastname }}</h6>
+    {% endif %}</div>
     <div id="profileActivities">
-        <p> {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <h6>{{ currentuser.firstname }} {{ currentuser.lastname }}</h6>
-            {% endif %}</p>
         <p>Total activities : {{ totalactivities }}</p>
         <p><span>Awaiting results :</span> {{ totalactivities - gradedactivities  }}</p>
+    </div>#}
+    <!------------->
+    <div class="col s12 m7">
+        <h2 class="header"> {% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ currentuser.firstname }} {{ currentuser.lastname }}{% endif %}</h2>
+        <div class="card horizontal">
+            <div class="card-image">
+                <img src={{ asset('lib/img/gc.jpg') }}>
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>Total activities : {{ totalactivities }}</p>
+                    <p><span>Awaiting results :</span> {{ totalactivities - gradedactivities  }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="{{ path('myActivities') }}">MY ACTIVITIES</a>
+                </div>
+            </div>
+        </div>
     </div>
-
 {% endblock %}
