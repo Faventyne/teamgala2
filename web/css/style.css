@@ -380,8 +380,8 @@ input+label{
   border: 1px solid darkgrey;
   background-color: darkgrey;
   border-radius: 50%;
-  height: 20vw;
-  width: 20vw;
+  height: 30vw;
+  width: 30vw;
   padding: 0px;
   margin-top: 8vw;
   margin-left: 7vw;
@@ -392,6 +392,20 @@ input+label{
   height: 100%;
   width: 100%;
   margin: 0px;
+}
+
+#PhotoMyProfile p h6{
+    font-size: 2rem;
+}
+
+#profileActivities{
+    margin-top: 43vw;
+    margin-left: 4vh;
+    font-size: 4vh;
+}
+
+#profileActivities p span{
+    font-style: italic;
 }
 
 /*******FOOTER ************/
@@ -422,7 +436,9 @@ display: none;
 
 @media screen and (min-width: 800px) {
   /***header***/
-  /* all elements in the header for the mobile version*/
+  #logoMain{
+    display : none;
+  }
 
   header {
     height: 8vw;
@@ -446,13 +462,6 @@ display: none;
     margin-top: -6vw;
     font-size: 5vw;
     color: white;
-  }
-
-  #logoHomepage {
-    display: block;
-    margin-left: 2vw;
-    margin-top: 0vh;
-    width: 8vw;
   }
 
   header h3 {
@@ -494,10 +503,15 @@ display: none;
     overflow: hidden;
   }
 
-  /***Homepage***/
-  #homeLogo {
-    display: none;
-  }
+  /***HOMEPAGE***/
+
+
+    #logoHomepage {
+        display: block;
+        margin-left: 2vw;
+        margin-top: 0vh;
+        width: 8vw;
+    }
 
   #homelist{
     margin-top: 20vw;
@@ -509,5 +523,28 @@ display: none;
   .currentPage{
 display: none;
   }
+
+  /***MY PROFILE****/
+
+    #profileActivities{
+        margin-top: 30vw;
+        margin-left: 14vh;
+        font-size: 4vh;
+    }
+
+    #PhotoMyProfileDiv{
+        position: absolute;
+        border: 1px solid darkgrey;
+        background-color: darkgrey;
+        border-radius: 50%;
+        height: 15vw;
+        width: 15vw;
+        padding: 0px;
+        margin-top: 8vw;
+        margin-left: 7vw;
+        overflow: hidden;
+    }
+
+   /***ACTIVITY MODIFY****/
 
 }
