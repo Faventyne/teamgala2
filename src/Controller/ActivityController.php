@@ -456,21 +456,29 @@ class ActivityController extends MasterController
         $role = $app['security.token_storage']->getToken()->getUser()->getRolId();
         $id = $app['security.token_storage']->getToken()->getUser()->getId();
 
+    if($role != 4) {
+
         $sql = "SELECT * FROM activity 
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
             INNER JOIN user ON user.usr_id=activity_user.user_usr_id 
             WHERE user.usr_id=:id 
             ORDER BY activity.act_id";
-
-        $pdoStatement = $app['db']->prepare($sql) ;
-        $pdoStatement->bindValue(':id',$id);
+    } else {
+        $sql = "SELECT * FROM activity 
+            INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
+            INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
+            INNER JOIN user ON user.usr_id=activity_user.user_usr_id 
+            ORDER BY activity.act_id";
+    }
+        $pdoStatement = $app['db']->prepare($sql);
+        $pdoStatement->bindValue(':id', $id);
         $pdoStatement->execute();
         $result = $pdoStatement->fetchAll();
-        $finalResult=[];
-        foreach($result as $participant){
+        $finalResult = [];
+        foreach ($result as $participant) {
             $participant['isParticipant'] = 1;
-            $finalResult[]=$participant;
+            $finalResult[] = $participant;
         }
 
         if($role != 1) {
@@ -478,6 +486,8 @@ class ActivityController extends MasterController
                 [
                     'user_activities' => $finalResult
                 ]);
+
+
         } else {
             $sql = "SELECT * FROM activity 
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
@@ -507,20 +517,7 @@ class ActivityController extends MasterController
                     'user_activities' => $finalResult
                 ]);
         }
-
-        /*return print_r($result);
-
-        $repository = $entityManager->getRepository(Activity::class);
-        $result = [];
-        foreach ($repository->findByUsrId() as $activity) {
-            $result[] = $activity->toArrayUser();
-        }
-        */
-        return $app['twig']->render('activities_list.html.twig',
-            [
-                'user_activities' => $result
-            ]) ;
-
+        
     }
 
     public function saveGradesAction(Request $request, Application $app){
