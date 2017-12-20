@@ -11,24 +11,15 @@
     {{ currentuser.firstname }} {{ currentuser.lastname }}
 {% endblock %}
 {% block content %}
-    <div id="">
-        <ul>
-            <li>
-                <div id="PhotoMyProfileDiv">
-                    <img id="PhotoMyProfile" src="{{ asset('lib/img/gc.jpg') }}"/>
-                </div>
-            </li>
-            <li>
-                <!-- son nom -->
-                {% if currentuser != null %}
-                    <h6>{{ currentuser.positionName }} </h6>
-                {% endif %}
-            </li>
-        </ul>
-    </div>
-    <div>
-        Total activities : {{ totalactivities }}
-            Awaiting results : {{ totalactivities - gradedactivities  }}
+   <div id="PhotoMyProfileDiv">
+    <img id="PhotoMyProfile" src="{{ asset('lib/img/gc.jpg') }}"/>
+ </div>
+    <div id="profileActivities">
+        <p> {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <h6>{{ currentuser.firstname }} {{ currentuser.lastname }}</h6>
+            {% endif %}</p>
+        <p>Total activities : {{ totalactivities }}</p>
+        <p><span>Awaiting results :</span> {{ totalactivities - gradedactivities  }}</p>
     </div>
 
 {% endblock %}
