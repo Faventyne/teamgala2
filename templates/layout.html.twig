@@ -63,25 +63,36 @@
       </div>
 
       <header>
-        <!-- home menu icon/button for moblie -->
-        <i id="returnMenu" class="material-icons">home</i>
-        <!-- home logo button for DT version -->
-        <a href="{{ path('home') }}"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" ></a><h3>Serpico</h3>
-        <!-- log out icon/button for mobil version -->
-        <i id="logOutButton" class="material-icons logOutHiddenMenu">person</i>
-        <!--  -->
-        <a href="{{ path('logout') }}"><i  id="logOutButtonDT" class="fa fa-sign-out" aria-hidden="true"></i></a>
 
-        {% if currentuser != null %}
-        <h4> {{ currentuser.firstname }} {{ currentuser.lastname }} </h4>
-        {% endif %}
+<!-- for the mobile version (original) -->
+        <!-- home menu icon/button for mobile -->
+        <i id="returnMenu" class="material-icons ">home</i>
+
+        <!-- log out icon/button for mobile version -->
+        <i  id="logOutButton" class="fa fa-sign-out" aria-hidden="true"></i>
 
         <div class="currentPage">
           {% block pagename %}{% endblock %}
         </div>
+
+<!-- the DeskTop version (DT selectors used for desk top) -->
+
+        <!-- home logo button for DT version -->
+        <a href="{{ path('home') }}"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" ></a><h3>Serpico</h3>
+        <!-- le dispay du user dans le header DT -->
+        <div id="DTuser">
           {% if currentuser != null %}
-          <h5>{{ currentuser.firstname }} {{ currentuser.lastname }}</h5>
+          <div id="headerPhotoDiv">
+            <img id="headerPhoto" src="{{ asset('lib/img/Serpico.png') }}"/>
+          </div>
+            <h4> {{ currentuser.firstname }} {{ currentuser.lastname }} </h4>
+            <!-- log out icon for DT -->
+            <a href="{{ path('logout') }}"><i  id="logOutButtonDT" class="fa fa-sign-out" aria-hidden="true"></i></a>
+          {% elseif currentuser == null %}
+          <h4> Please Sign in </h4>
           {% endif %}
+        </div>
+
       </header>
 
 

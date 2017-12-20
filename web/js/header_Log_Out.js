@@ -31,7 +31,7 @@ $(function() {
 
   $( window ).resize(function() {
   if (window.innerWidth > 800) {
-     $("#logOutMenu").slideUp(500);
+     $("#dropDownOptions").hide("slide", { direction: "left" }, 500);
   }
 });
 

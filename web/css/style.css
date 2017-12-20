@@ -76,7 +76,7 @@ header h5{
   height: 10vw;
   width: 60vw;
   font-size: 5vw;
-  padding-top: 3vw;
+  padding-top: 4vw;
   margin-left: 22vw;
   color: white;
   overflow: hidden;
@@ -385,11 +385,16 @@ input+label{
   font-size: 2vh;
   }
 
+  /* all elements in the header for the mobile version*/
+.mobileElement{
+}
 
 /******Desktop**********/
 
 @media screen and (min-width: 1200px) {
   /***header***/
+  /* all elements in the header for the mobile version*/
+
   header {
     height: 8vw;
     margin: 0;
@@ -440,6 +445,24 @@ input+label{
     display: none;
   }
 
+  #headerPhoto{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+  }
+  #headerPhotoDiv{
+    position: absolute;
+    border: 1px solid darkgrey;
+    background-color: darkgrey;
+    border-radius: 50%;
+    height: 6vw;
+    width: 6vw;
+    padding: 0px;
+    margin-top: 8vw;
+    margin-left: -2vw;
+    overflow: hidden;
+  }
+
   /***Homepage***/
   #homeLogo {
     display: none;
@@ -453,8 +476,7 @@ input+label{
   }
 
   .currentPage{
-    margin-top: -9vw;
-    margin-left: 25vw;
+display: none;
   }
 
 }
