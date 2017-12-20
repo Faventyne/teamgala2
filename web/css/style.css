@@ -501,12 +501,7 @@ display: none;
   /***HOMEPAGE***/
 
 
-    #logoHomepage {
-        display: block;
-        margin-left: 2vw;
-        margin-top: 0vh;
-        width: 8vw;
-    }
+
 
   #homelist{
     margin-top: 20vw;
