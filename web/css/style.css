@@ -396,6 +396,12 @@ input+label{
     font-style: italic;
 }
 
+/******CRITERIA LIST********/
+#criteriaForm form{
+  width: 70%;
+  margin-left: 3vw;
+}
+
 /*******FOOTER ************/
 .footer-copyright{
   background-color: #0b0b0b;
@@ -540,6 +546,9 @@ display: none;
         overflow: hidden;
     }
 
+    div #PhotoMyProfile h6{
+      font-size: 3vh;
+    }
    /***ACTIVITY MODIFY****/
 
 }
