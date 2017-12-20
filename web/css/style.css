@@ -502,7 +502,24 @@ display: none;
     margin-top: -140px;
     overflow: hidden;
   }
-  /*** fin du geader DT */
+
+  #headerMenuDT {
+  margin-top: -8vw;
+  margin-left: 200px;
+
+  }
+
+  #headerMenuDT ul li{
+    display: inline;
+    padding-right: 10vw;
+    font-size: 3vw;
+    color: grey;
+  }
+  .headerli{
+    border: 1px solid red;
+    border-top-right-radius: 2vw;
+  }
+  /*** fin du header DT */
 
   /***HOMEPAGE***/
 

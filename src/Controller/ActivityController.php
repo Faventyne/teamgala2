@@ -181,7 +181,6 @@ class ActivityController extends MasterController
         $entityManager = $this->getEntityManager($app) ;
         $repository = $entityManager->getRepository(Criterion::class) ;
         $criterion = $repository->findOneByActId($actId); 
-        var_dump ($criterion);
         
         $formFactory = $app['form.factory'] ;
         $modifyActivityForm = $formFactory->create(AddActivityCriteriaForm::class, $criterion, ['standalone' => true]) ;
@@ -223,7 +222,7 @@ class ActivityController extends MasterController
         //Get all participants
         $repository = $entityManager->getRepository(\Model\ActivityUser::class);
         $participants = [];
-
+        $update = false ;
 
         foreach ($repository->findByActId($actId) as $participant) {
             //TODO : define toArray method in ActivityUser repository; create repository
@@ -243,6 +242,9 @@ class ActivityController extends MasterController
             $pdoStatement->execute();
             $grd = $pdoStatement->fetch();
             $participant['grade']=$grd['grd_value'];
+            if ($grd['grd_value']!= null) {
+                $update = true ;
+            };
             $part[]=$participant;
         };
 
@@ -253,19 +255,6 @@ class ActivityController extends MasterController
         foreach ($repository->findByActId($actId) as $criterion) {
             //TODO : define toArray method in Criteria repository; create repository
             $criteria[] = $criterion->toArray();
-        }
-
-
-        $formFactory = $app['form.factory'] ;
-        $gradeForm = $formFactory->create(GradeForm::class, $grade, ['standalone'=>true]);
-        $gradeForm->handleRequest($request);
-        
-        
-        
-        if ($gradeForm->isSubmitted()){
-
-            print_r("Coucou");
-            die;
         }
 
         $result=[];
@@ -283,11 +272,10 @@ class ActivityController extends MasterController
 
         return $app['twig']->render('activity_grade.html.twig',
             [
-                'form' => $gradeForm->createView(),
                 'result' => $result,
                 'actId' => $result['stage']['criterion']['actId'],
                 'criId' => $result['stage']['criterion']['id'],
-
+                'update' => $update,
             ]) ;
 
     }
@@ -461,14 +449,12 @@ class ActivityController extends MasterController
         $sql = "SELECT * FROM activity 
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
-            INNER JOIN user ON user.usr_id=activity_user.user_usr_id 
-            WHERE user.usr_id=:id 
+            WHERE activity_user.user_usr_id=:id 
             ORDER BY activity.act_id";
     } else {
         $sql = "SELECT * FROM activity 
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
-            INNER JOIN user ON user.usr_id=activity_user.user_usr_id 
             ORDER BY activity.act_id";
     }
         $pdoStatement = $app['db']->prepare($sql);
@@ -492,7 +478,6 @@ class ActivityController extends MasterController
             $sql = "SELECT * FROM activity 
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
-            INNER JOIN user ON user.usr_id=activity_user.user_usr_id
             ORDER BY activity.act_id";
             $pdoStatement = $app['db']->prepare($sql) ;
             $pdoStatement->bindValue(':id',$id);
@@ -537,16 +522,42 @@ class ActivityController extends MasterController
                 $criId=intval($value);
             }
         }
-
-        foreach ($_POST as $key => $value){
-            if(is_numeric($key)){
-                $grade = new Grade();
-                $grade->setParId($parId);
-                $grade->setActId($actId);
-                $grade->setCriId($criId);
-                $grade->setGradedId($key);
-                $grade->setValue(floatval($value));
-                $entityManager->persist($grade);
+        
+        // If update or not
+        if ($_POST['update']==false) {
+            foreach ($_POST as $key => $value){
+                if(is_numeric($key)){
+                    $grade = new Grade();
+                    $grade->setParId($parId);
+                    $grade->setActId($actId);
+                    $grade->setCriId($criId);
+                    $grade->setGradedId($key);
+                    $grade->setValue(floatval($value));
+                    $entityManager->persist($grade);
+                } 
+            } 
+        } else {
+            foreach ($_POST as $key => $value){
+                if(is_numeric($key)){
+                    //find the grd_id
+                    $sql = "SELECT grd_id FROM grade WHERE grd_graded_id=:id AND activity_user_activity_act_id=:actId AND activity_user_user_usr_id=:connected";
+                    $pdoStatement = $app['db']->prepare($sql);
+                    $pdoStatement->bindValue(':id',$key);
+                    $pdoStatement->bindValue(':actId', $actId);
+                    $pdoStatement->bindValue(':connected', $parId);
+                    $pdoStatement->execute();
+                    $grdId = $pdoStatement->fetch();
+                    $gradeId = $grdId['grd_id'];
+                    //get the grade object that correspond to the grd_id
+                    $grade = $repository->findOneById($gradeId);
+                    //modify the values
+                    $grade->setParId($parId);
+                    $grade->setActId($actId);
+                    $grade->setCriId($criId);
+                    $grade->setGradedId($key);
+                    $grade->setValue(floatval($value));
+                    $entityManager->persist($grade);
+                }
             }
         }
         $entityManager->flush();
