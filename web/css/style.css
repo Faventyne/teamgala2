@@ -238,14 +238,16 @@ img{
   margin-left: 15%;
   margin-top: 15%;
   font-size: 3vw;
-  width: 50%;
+  width: 60%;
   margin: auto;
 }
 
 
 
 #disabled{
-    font-size: 1vw;
+  font-size: 5vw;
+  margin-left: 3vw;
+  width: 77vw;
 }
 
 form div .input-field label{
@@ -282,7 +284,7 @@ form p{
 
 
 
-/*********lists *********/
+/*********LISTS *********/
 .collapsible{
   font-size: 2.5vw;
   font-weight: 600;
@@ -371,6 +373,27 @@ input+label{
   margin-top: 7vw;
 }
 
+/***MY PROFILE *************/
+
+#PhotoMyProfileDiv{
+  position: absolute;
+  border: 1px solid darkgrey;
+  background-color: darkgrey;
+  border-radius: 50%;
+  height: 20vw;
+  width: 20vw;
+  padding: 0px;
+  margin-top: 8vw;
+  margin-left: 7vw;
+  overflow: hidden;
+}
+
+#PhotoMyProfile{
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+}
+
 /*******FOOTER ************/
 .footer-copyright{
   background-color: #0b0b0b;
@@ -391,7 +414,7 @@ input+label{
 
 /******Desktop**********/
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 800px) {
   /***header***/
   /* all elements in the header for the mobile version*/
 
