@@ -194,4 +194,10 @@ class UserController extends MasterController
 
     }
 
+    public function getAuthorizedUser(Request $request, Application $app){
+
+
+    }
+
+
 }

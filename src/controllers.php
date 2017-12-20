@@ -22,11 +22,11 @@ $routeProfile = $app->get('/admin/logout', "\Controller\UserController::logoutAc
 // Home page
 $routeHome = $app->get('/home', "Controller\UserController::homeAction") ;
 $routeHome->bind('home') ;
-
+/*
 // Profile page
-$routeProfile = $app->get('/profile', "Controller\UserController::profileAction") ;
+$routeProfile = $app->get('/profile', "Controller\UserController::getAuthorizedUser") ;
 $routeProfile->bind('profile') ;
-
+*/
 
 
 // My activities page
