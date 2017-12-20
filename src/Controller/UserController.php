@@ -24,9 +24,6 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class UserController extends MasterController
 {
 
-    public function logoutAction(Request $request, Application $app){
-        return $app->redirect($app['url_generator']->generate('login'));;
-    }
     /*********** ADDITION, MODIFICATION, DELETION AND DISPLAY OF USERS *****************/
 
     //Adds user to current organization (limited to HR)
@@ -177,8 +174,8 @@ class UserController extends MasterController
 
         return $app['twig']->render('home.html.twig',
             [
-                //'error' => $app['security.last_error']($request),
-                //'last_username' => $app['session']->get('security.last_username')
+                'error' => $app['security.last_error']($request),
+                'last_username' => $app['session']->get('security.last_username'),
             ]);
     }
 
@@ -193,5 +190,14 @@ class UserController extends MasterController
     public function modifyPositionWeightAction(Request $request, Application $app){
 
     }
+
+    public function displayUser(Request $request, Application $app){
+
+        return $app['twig']->render('my_profile.html.twig',
+            [
+            ]);
+
+    }
+
 
 }
