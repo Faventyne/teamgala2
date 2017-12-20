@@ -300,7 +300,7 @@ class ActivityController extends MasterController
         //getting all activity users
         $activityUsers=$repoAU->findByActId($actId);
 
-        //getting all criteria
+        //getting all criteria (there is just one so findOneBy is enough)
         $criteria = $repoC->findByActId($actId);
 
         //getting all grades
@@ -418,7 +418,9 @@ class ActivityController extends MasterController
         return $app['twig']->render('activity_results.html.twig',
             [
                 'activity' => $activity,
-                'data' => $renderedData
+                'data' => $renderedData,
+                'lowerbound' => $criteria[0]->getLowerbound(),
+                'upperbound' => $criteria[0]->getUpperbound()
             ]
         );
     }
