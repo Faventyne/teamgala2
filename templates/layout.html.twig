@@ -62,7 +62,13 @@
             </div>
           </div>
         {% endif %}
-      <header>
+
+
+        <!-- mobile header -->
+
+
+
+        <header id="header">
 
 <!-- for the mobile version (original) -->
         <!-- home menu icon/button for mobile -->
@@ -75,36 +81,36 @@
           {% block pagename %}{% endblock %}
         </div>
 
-<!-- the DeskTop version (DT selectors used for desk top) -->
-
-        <!-- home logo button for DT version -->
-        <a href="{{ path('home') }}"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" ></a>
-
-        <!-- le dispay du user dans le header DT -->
-        <div id="DTuser">
-          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <div id="headerPhotoDiv">
-              <img id="headerPhoto" src="{{ asset('lib/img/logoaltthree.png') }}"/>
-            </div>
-              <h4>
-                {{ currentuser.firstname }} {{ currentuser.lastname }}
-                <!-- log out icon for DT -->
-                <a href="{{ path('admin_logout') }}"><i  id="logOutButtonDT" class="fa fa-sign-out" aria-hidden="true"></i></a>
-              </h4>
-
-            {% else %}
-            <h4> Please Sign in </h4>
-          {% endif %}
-        </div>
-        <div id="headerMenuDT">
-          <ul>
-            <li class="headerli">Activities</li>
-            <li class="headerli">Users</li>
-            <li class="headerli">Profile</li>
-          </ul>
-        </div>
 
       </header>
+
+<!-- desktop version -->
+
+
+      <nav id="nav">
+   <div class="nav-wrapper black">
+     <a href="{{ path('home') }}" class="brand-logo"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" ><span id="serpicoNav">Serpico</span></a>
+     <ul id="nav-mobile" class="right ">
+       <li><a href="{{ path('myActivities') }}">Activities <i class="fa fa-briefcase" aria-hidden="true"></i></a></li>
+       <li><a href="{{ path('createUser') }}">Users <i class="fa fa-users" aria-hidden="true"></i></a></li>
+       <li><a href="{{ path('profile') }}">
+         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          {{ currentuser.firstname }} {{ currentuser.lastname }} Profile <i class="fa fa-cog" aria-hidden="true"></i>
+
+         {% else %}
+          Please Sign in
+         {% endif %}
+
+       </a></li>
+       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+         <li>
+           <a href="{{ path('admin_logout') }}">Log Out <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+         </li>
+       {% endif %}
+
+     </ul>
+   </div>
+ </nav>
 
 
 
@@ -117,7 +123,7 @@
         <!-- CDN JQuery UI -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
         <!-- header custom js -->
-        <script src="{{ asset('js/header_Log_Out.js') }}"></script>
+        <script src="{{ asset('js/header.js') }}"></script>
         {% block javascripts %}{% endblock %}
       <footer>
           <div class="footer-copyright">
