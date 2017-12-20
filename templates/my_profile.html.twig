@@ -12,12 +12,12 @@
 {% endblock %}
 {% block content %}
    <div id="PhotoMyProfileDiv">
-    <img id="PhotoMyProfile" src="{{ asset('lib/img/gc.jpg') }}"/>
+    <img id="PhotoMyProfile" src="{{ asset('lib/img/')}}{{ currentuser.picture }}"/>
  </div>
+    <div id="MyProfileName"> {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <h6>{{ currentuser.firstname }} {{ currentuser.lastname }}</h6>
+    {% endif %}</div>
     <div id="profileActivities">
-        <p> {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <h6>{{ currentuser.firstname }} {{ currentuser.lastname }}</h6>
-            {% endif %}</p>
         <p>Total activities : {{ totalactivities }}</p>
         <p><span>Awaiting results :</span> {{ totalactivities - gradedactivities  }}</p>
     </div>

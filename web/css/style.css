@@ -558,6 +558,9 @@ display: none;
         overflow: hidden;
     }
 
+    div #PhotoMyProfile h6{
+      font-size: 3vh;
+    }
    /***ACTIVITY MODIFY****/
 
 }
