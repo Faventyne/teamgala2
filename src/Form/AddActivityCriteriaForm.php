@@ -51,8 +51,10 @@ class AddActivityCriteriaForm extends AbstractType
             ->add('deadline', DateTimeType::class, [
                 //'format' => 'dd/MM/yyyy',
                 //'placeholder' => 'dd/mm/yyyy',
+                'widget' => 'single_text',
                 'label' => 'Grading deadline (dd/mm/yyyy)',
-
+                'html5' => false,
+                'attr' => ['class' => 'datepicker'],
                 'constraints' => [
                     new Assert\NotBlank(),
                     //new Assert\DateTime(['format' => 'd/m/Y'])

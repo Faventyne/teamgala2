@@ -50,7 +50,13 @@ Activity list
                     {% endif %}
 </div>
 
-              <span class="new badge"> {{ activity['act_status'] }} </span>
+              <span class="new badge">
+                  {% if activity['act_status'] == 0 %}
+                    To be graded
+                  {% else %}
+                    Graded
+                  {% endif %}
+              </span>
 
           </div>
 
