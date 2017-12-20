@@ -541,10 +541,33 @@ class ActivityController extends MasterController
 
                 }
             }
+
+            $entityManager->flush();
+
+            //Set status to 1 if user grades
             $repoA = $entityManager->getRepository(Activity::class);
             $activity = $repoA->findOneById($actId);
             $activity->setStatus(1);
             $entityManager->persist($activity);
+            $entityManager->flush();
+
+            //Check if all grades have been submitted, then result can now be computed
+            $data = $repository->findByActid($actId);
+            $k=0;
+            //print_r($data);
+            //die;
+            foreach ($data as $participantGrade)
+            {
+                if ($participantGrade->getValue()!= null)
+                {$k += 1;}
+            }
+            if ($k == sizeof($data))
+            {
+                $activity->setStatus(2);
+                $entityManager->persist($activity);
+                $entityManager->flush();
+            }
+        //...otherwise
         } else {
             foreach ($_POST as $key => $value){
                 if(is_numeric($key)){
@@ -568,8 +591,9 @@ class ActivityController extends MasterController
                     $entityManager->persist($grade);
                 }
             }
-        }
         $entityManager->flush();
+        }
+
         return $app->redirect($app['url_generator']->generate('myActivities')) ;
     }
 
