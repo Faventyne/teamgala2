@@ -43,25 +43,25 @@
 
 <!-- comment seperating the two slided in menus -->
 
-
-      <div id="dropDownOptions" class="HiddenMenu">
-        <!-- phot du mec, ajout de if si jamais on fait lajout de photos  -->
-        <div id="popUpPhotoDiv">
-          <img id="popUpPhoto" src="{{ asset('lib/img/Serpico.png') }}"/>
-        </div>
-            <!-- son nom -->
-        <h1>{% block username %}{% endblock %}</h1>
-         <h1>Menu </h1>
-         <ul>
-             <li><i class="fa fa-user" aria-hidden="true"></i><a href="{{ path('profile') }}"> MY PROFILE </a></li>
-             <li><i class="fa fa-briefcase" aria-hidden="true"></i><a href="{{ path('myActivities') }}">MY ACTIVITIES</a></li>
-             <li><i class="fa fa-cog" aria-hidden="true"></i><a href="{{ path('createUser') }}"> SETTINGS</a></li>
-         </ul>
-        <div id="homeCloseButton">
-          close
-        </div>
-      </div>
-
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          <div id="dropDownOptions" class="HiddenMenu">
+            <!-- phot du mec, ajout de if si jamais on fait lajout de photos  -->
+            <div id="popUpPhotoDiv">
+              <img id="popUpPhoto" src="{{ asset('lib/img/Serpico.png') }}"/>
+            </div>
+                <!-- son nom -->
+            <h1>{% block username %}{% endblock %}</h1>
+             <h1>Menu </h1>
+             <ul>
+                 <li><i class="fa fa-user" aria-hidden="true"></i><a href="{{ path('profile') }}"> MY PROFILE </a></li>
+                 <li><i class="fa fa-briefcase" aria-hidden="true"></i><a href="{{ path('myActivities') }}">MY ACTIVITIES</a></li>
+                 <li><i class="fa fa-cog" aria-hidden="true"></i><a href="{{ path('createUser') }}"> SETTINGS</a></li>
+             </ul>
+            <div id="homeCloseButton">
+              close
+            </div>
+          </div>
+        {% endif %}
       <header>
 
 <!-- for the mobile version (original) -->
@@ -79,17 +79,18 @@
 
         <!-- home logo button for DT version -->
         <a href="{{ path('home') }}"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" ></a><h3>Serpico</h3>
+        
         <!-- le dispay du user dans le header DT -->
         <div id="DTuser">
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-          <div id="headerPhotoDiv">
-            <img id="headerPhoto" src="{{ asset('lib/img/Serpico.png') }}"/>
-          </div>
-            <h4> {{ currentuser.firstname }} {{ currentuser.lastname }} </h4>
-            <!-- log out icon for DT -->
-            <a href="{{ path('admin_logout') }}"><i  id="logOutButtonDT" class="fa fa-sign-out" aria-hidden="true"></i></a>
-          {% elseif currentuser == null %}
-          <h4> Please Sign in </h4>
+            <div id="headerPhotoDiv">
+              <img id="headerPhoto" src="{{ asset('lib/img/Serpico.png') }}"/>
+            </div>
+              <h4> {{ currentuser.firstname }} {{ currentuser.lastname }} </h4>
+              <!-- log out icon for DT -->
+              <a href="{{ path('admin_logout') }}"><i  id="logOutButtonDT" class="fa fa-sign-out" aria-hidden="true"></i></a>
+            {% elseif currentuser == null %}
+            <h4> Please Sign in </h4>
           {% endif %}
         </div>
 
