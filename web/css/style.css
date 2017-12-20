@@ -411,6 +411,12 @@ input+label{
   /* all elements in the header for the mobile version*/
 .mobileElement{
 }
+#headerPhoto{
+display: none;
+}
+#headerPhotoDiv{
+display: none;
+}
 
 /******Desktop**********/
 
@@ -469,11 +475,13 @@ input+label{
   }
 
   #headerPhoto{
+    display:block;
     height: 100%;
     width: 100%;
     margin: 0px;
   }
   #headerPhotoDiv{
+    display:block;
     position: absolute;
     border: 1px solid darkgrey;
     background-color: darkgrey;
