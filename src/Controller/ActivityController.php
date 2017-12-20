@@ -517,7 +517,7 @@ class ActivityController extends MasterController
                     'user_activities' => $finalResult
                 ]);
         }
-        
+
     }
 
     public function saveGradesAction(Request $request, Application $app){
