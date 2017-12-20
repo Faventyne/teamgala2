@@ -20,7 +20,7 @@ Activity list
       <ul id="ListButtons" class="collapsible" data-collapsible="accordion">
         <li>
           <div class="collapsible-header">
-            <i class="material-icons">expand_more</i>
+            <i id="expand" class="material-icons">expand_more</i>
             <!-- just giving the name an absolute position because it was interfering ith the button position -->
             <div class="" style="position: absolute; margin-left: 7vw; font-size: 4vw;">
             {{ activity['act_name']  }}
@@ -28,7 +28,6 @@ Activity list
                 {# if user is not a simple collaborator #}
                 <!-- i had to make a div to contain the buttons because of marginalise and did the style inside
                  it to override the important aspects of all the classes -->
-<div style="display: flex;">
                   {% if is_granted('ROLE_ACTIVITY_MANAGER') or is_granted('ROLE_HR') %}
                   <div class="button-field col s5">
                     <form action="{{ url('activityModify',{'actId' : activity['act_id']})}}">
@@ -48,7 +47,7 @@ Activity list
                       </form>
                     </div>
                     {% endif %}
-</div>
+
               {% if activity['act_status'] == 0 %}
                 <span class="new badge light-blue darken-2"> To be graded </span>
               {% elseif activity['act_status'] == 1 %}

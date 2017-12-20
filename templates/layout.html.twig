@@ -47,15 +47,16 @@
           <div id="dropDownOptions" class="HiddenMenu">
             <!-- phot du mec, ajout de if si jamais on fait lajout de photos  -->
             <div id="popUpPhotoDiv">
-              <img id="popUpPhoto" src="{{ asset('lib/img/Serpico.png') }}"/>
+              <img id="popUpPhoto" src="{{ asset('lib/img/logoaltthree.png') }}"/>
             </div>
                 <!-- son nom -->
             <h1>{% block username %}{% endblock %}</h1>
              <h1>Menu </h1>
              <ul>
-                 <li><i class="fa fa-user" aria-hidden="true"></i><a href="{{ path('profile') }}"> MY PROFILE </a></li>
-                 <li><i class="fa fa-briefcase" aria-hidden="true"></i><a href="{{ path('myActivities') }}">MY ACTIVITIES</a></li>
-                 <li><i class="fa fa-cog" aria-hidden="true"></i><a href="{{ path('createUser') }}"> SETTINGS</a></li>
+               <li><i class="fa fa-home" aria-hidden="true"></i><a href="{{ path('home') }}"> HOME </a></li>
+               <li><i class="fa fa-user" aria-hidden="true"></i><a href="{{ path('profile') }}"> MY PROFILE </a></li>
+               <li><i class="fa fa-briefcase" aria-hidden="true"></i><a href="{{ path('myActivities') }}">MY ACTIVITIES</a></li>
+               <li><i class="fa fa-cog" aria-hidden="true"></i><a href="{{ path('createUser') }}"> Users</a></li>
              </ul>
             <div id="homeCloseButton">
               close
