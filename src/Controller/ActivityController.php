@@ -461,14 +461,12 @@ class ActivityController extends MasterController
         $sql = "SELECT * FROM activity 
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
-            INNER JOIN user ON user.usr_id=activity_user.user_usr_id 
-            WHERE user.usr_id=:id 
+            WHERE activity_user.user_usr_id=:id 
             ORDER BY activity.act_id";
     } else {
         $sql = "SELECT * FROM activity 
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
-            INNER JOIN user ON user.usr_id=activity_user.user_usr_id 
             ORDER BY activity.act_id";
     }
         $pdoStatement = $app['db']->prepare($sql);
@@ -492,7 +490,6 @@ class ActivityController extends MasterController
             $sql = "SELECT * FROM activity 
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
-            INNER JOIN user ON user.usr_id=activity_user.user_usr_id
             ORDER BY activity.act_id";
             $pdoStatement = $app['db']->prepare($sql) ;
             $pdoStatement->bindValue(':id',$id);
