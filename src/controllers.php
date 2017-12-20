@@ -18,11 +18,11 @@ $routeLogin->bind('login') ;
 // Home page
 $routeHome = $app->get('/home', "Controller\UserController::homeAction") ;
 $routeHome->bind('home') ;
-/*
+
 // Profile page
-$routeProfile = $app->get('/profile', "Controller\UserController::getAuthorizedUser") ;
+$routeProfile = $app->get('/profile', "Controller\UserController::displayUser") ;
 $routeProfile->bind('profile') ;
-*/
+
 
 
 // My activities page
