@@ -72,7 +72,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(),
                     'logout' => [
                         'logout_path' => '/admin/logout',
                         'invalidate_session' => true,
-                        //'target_url' => '/home',
+                        'target_url' => '/',
                     ], 
                 ], 
             ],          
