@@ -1,0 +1,30 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{%  block pagename %}
+    HOME
+{% endblock %}
+{% block username %}
+    {{ currentuser.firstname }} {{ currentuser.lastname }}
+{% endblock %}
+{% block content %}
+    <div id="">
+        <ul>
+            <li>
+                <div id="PhotoMyProfileDiv">
+                    <img id="PhotoMyProfile" src="{{ asset('lib/img/gc.jpg') }}"/>
+                </div>
+            </li>
+            <li>
+                <!-- son nom -->
+                {% if currentuser != null %}
+                    <h6>{{ currentuser.firstname }} {{ currentuser.lastname }}</h6>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}
