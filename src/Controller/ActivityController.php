@@ -280,7 +280,7 @@ class ActivityController extends MasterController
 
     }
 
-    //Get the results of an activity for habilited people
+    //Get the results of an activity for intended users
     public function resultsAction(Request $request, Application $app, $actId){
         $em = $app['orm.em'];
 
@@ -523,7 +523,7 @@ class ActivityController extends MasterController
             }
         }
         
-        // If update or not
+        // If it is the first time the users grades the activity
         if ($_POST['update']==false) {
             foreach ($_POST as $key => $value){
                 if(is_numeric($key)){
@@ -534,6 +534,9 @@ class ActivityController extends MasterController
                     $grade->setGradedId($key);
                     $grade->setValue(floatval($value));
                     $entityManager->persist($grade);
+                    //Change activity status to 'On Grade'
+                    $repoA = $entityManager->getRepository(Activity::class);
+                    $repoA->findbyId($actId)->setStatus(1);
                 } 
             } 
         } else {
