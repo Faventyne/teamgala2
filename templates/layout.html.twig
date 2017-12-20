@@ -81,13 +81,13 @@
         <a href="{{ path('home') }}"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" ></a><h3>Serpico</h3>
         <!-- le dispay du user dans le header DT -->
         <div id="DTuser">
-          {% if currentuser != null %}
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
           <div id="headerPhotoDiv">
             <img id="headerPhoto" src="{{ asset('lib/img/Serpico.png') }}"/>
           </div>
             <h4> {{ currentuser.firstname }} {{ currentuser.lastname }} </h4>
             <!-- log out icon for DT -->
-            <a href="{{ path('logout') }}"><i  id="logOutButtonDT" class="fa fa-sign-out" aria-hidden="true"></i></a>
+            <a href="{{ path('admin_logout') }}"><i  id="logOutButtonDT" class="fa fa-sign-out" aria-hidden="true"></i></a>
           {% elseif currentuser == null %}
           <h4> Please Sign in </h4>
           {% endif %}
