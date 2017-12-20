@@ -445,11 +445,11 @@ class ActivityController extends MasterController
         $id = $app['security.token_storage']->getToken()->getUser()->getId();
 
     if($role != 4) {
-
-        $sql = "SELECT * FROM activity 
+        $sql = "SELECT act_name,act_id,act_status,act_objectives,act_inserted,act_quotes_deadline,cri_gradetype,cri_lowerbound,cri_upperbound,cri_step FROM activity
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id 
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
             WHERE activity_user.user_usr_id=:id 
+            GROUP BY (activity.act_id)
             ORDER BY activity.act_id";
     } else {
         $sql = "SELECT act_name,act_id,act_status,act_objectives,act_inserted,act_quotes_deadline,cri_gradetype,cri_lowerbound,cri_upperbound,cri_step FROM activity
