@@ -218,11 +218,7 @@ margin-right: 25vw;
 
 /************************************************************************************/
 
-img{
-  width: 30%;
-  margin-left: 37%;
-  margin-top: 20%;
-}
+
 /*** FORM LOGIN*/
 
 #formLogin{
@@ -558,7 +554,7 @@ display: none;
         overflow: hidden;
     }
 
-    div #PhotoMyProfile h6{
+    #PhotoMyProfile h6{
       font-size: 3vh;
     }
    /***ACTIVITY MODIFY****/
