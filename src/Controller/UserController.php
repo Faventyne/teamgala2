@@ -191,10 +191,13 @@ class UserController extends MasterController
 
     }
 
-    //public function getAuthorizedUser(Request $request, Application $app){
+    public function displayUser(Request $request, Application $app){
 
+        return $app['twig']->render('my_profile.html.twig',
+            [
+            ]);
 
-    //}
+    }
 
 
 }
