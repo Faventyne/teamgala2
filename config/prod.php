@@ -58,7 +58,7 @@ $app->register(new Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider(),
 $app->register(new Silex\Provider\SecurityServiceProvider(),
         [
             'security.firewalls' => [
-                'logged' => [
+                'secured' => [
                     'pattern' => '^/',
                     'anonymous' =>true,
                     'users' => function () use ($app) {
@@ -79,11 +79,12 @@ $app->register(new Silex\Provider\SecurityServiceProvider(),
             'security.role_hierarchy' => [
                 'ROLE_COLLABORATOR' => [],
                 'ROLE_ACTIVITY_MANAGER' => ['ROLE_COLLABORATOR'],
-                'HR' => ['ROLE_COLLABORATOR','ROLE_ACTIVITY_MANAGER'],
-                'ADMIN' => ['ROLE_COLLABORATOR','ROLE_ACTIVITY_MANAGER','ROLE_HR']   
+                'ROLE_HR' => ['ROLE_COLLABORATOR','ROLE_ACTIVITY_MANAGER'],
+                'ROLE_ADMIN' => ['ROLE_COLLABORATOR','ROLE_ACTIVITY_MANAGER','ROLE_HR']   
             ],
             
             'security.access_rules' => [
+                ['^/.+', ['ROLE_ACTIVITY_MANAGER','ROLE_HR','ROLE_ADMIN','ROLE_COLLABORATOR']],
                 ['^/activity', ['ROLE_ACTIVITY_MANAGER','ROLE_HR','ROLE_ADMIN','ROLE_COLLABORATOR']],
                 ['^/settings/users/create', ['ROLE_HR','ROLE_ADMIN']]
             ]
