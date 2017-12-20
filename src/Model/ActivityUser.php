@@ -94,7 +94,7 @@ class ActivityUser
      * @param float $of_penalty
 
      */
-    public function __construct($usrId=0, $actId=0, $distance=0.0, $result=0.0, $type='contributor', $mweight=0.0, $precomment='', $ivp_bonus=0.0, $ivp_penalty=0.0, $of_bonus=0.0, $of_penalty=0.0, $inserted=null)
+    public function __construct($usrId=0, $actId=0, $distance=null, $result=null, $type='contributor', $mweight=0.0, $precomment='', $ivp_bonus=null, $ivp_penalty=null, $of_bonus=null, $of_penalty=null, $inserted=null)
     {
         $this->usr_id = $usrId;
         $this->actId = $actId;

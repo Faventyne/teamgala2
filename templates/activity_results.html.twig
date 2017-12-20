@@ -22,7 +22,7 @@
                 {{ user.firstname }} {{ user.lastname }}
             </div>
             <div class="button-field col s5 m5">
-                {{ user.result|round(2) }}
+                {{ user.result|round(2) }} / {{ upperbound }}
             </div>
         </div>
     {% endfor %}
