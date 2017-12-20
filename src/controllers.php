@@ -15,10 +15,6 @@ $routePwd->bind('password') ;
 $routeLogin = $app->match('/', "Controller\UserController::loginAction") ;
 $routeLogin->bind('login') ;
 
-// logout page
-$routeProfile = $app->get('/admin/logout', "\Controller\UserController::logoutAction") ->bind('logout');
-
-
 // Home page
 $routeHome = $app->get('/home', "Controller\UserController::homeAction") ;
 $routeHome->bind('home') ;

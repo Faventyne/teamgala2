@@ -59,7 +59,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(),
         [
             'security.firewalls' => [
                 'logged' => [
-                    'pattern' => '^/.+$',
+                    'pattern' => '^/',
                     'anonymous' =>true,
                     'users' => function () use ($app) {
                         $repository = $app['orm.em']->getRepository(\Model\User::class);
@@ -68,13 +68,13 @@ $app->register(new Silex\Provider\SecurityServiceProvider(),
                     'form' => [
                         'login_path' => '/',
                         'check_path' => '/admin/login_check'
-                    ], /*
+                    ], 
                     'logout' => [
                         'logout_path' => '/admin/logout',
-                        'invalide_session' => true,
-                        'target_url' => '/'
-                    ], */
-                ],
+                        'invalidate_session' => true,
+                        //'target_url' => '/home',
+                    ], 
+                ], 
             ],          
             'security.role_hierarchy' => [
                 'ROLE_COLLABORATOR' => [],
