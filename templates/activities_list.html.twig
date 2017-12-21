@@ -42,9 +42,12 @@ Activity list
 
                     {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR']))%}
                     <div class="button-field col s5">
-                      <form action="{{ url('activityGrade',{'actId' : activity['act_id']})}}">
-                        <button type="submit" class="validate"> GRADE </button>
-                      </form>
+                        <!-- Grading is not possible after every participant has submitted its grades -->
+                      {% if activity['act_status'] != 2 %}
+                        <form action="{{ url('activityGrade',{'actId' : activity['act_id']})}}">
+                          <button type="submit" class="validate"> GRADE </button>
+                        </form>
+                      {% endif %}
                     </div>
                     {% endif %}
 

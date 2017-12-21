@@ -537,10 +537,8 @@ class ActivityController extends MasterController
                     $grade->setValue(floatval($value));
                     $entityManager->persist($grade);
                     //Change activity status to 'On Grade'
-
-
-
-
+                } else {
+                    $grade->setComment($value);
                 }
             }
 
