@@ -22,12 +22,25 @@ Activity list
           <div class="collapsible-header">
             <i id="expand" class="material-icons">expand_more</i>
             <!-- just giving the name an absolute position because it was interfering ith the button position -->
-            <div class="" style="position: absolute; margin-left: 7vw; font-size: 4vw;">
-            {{ activity['act_name']  }}
+            <div id="activityListDiv" style="margin-left: 10vw; font-size: 4vw; ">
+              {{ activity['act_name']  }}
+              <br>
+              <span id="activityListSpan" style="font-size: 2.5vw; "> {{ activity['act_objectives']  }}</span>
             </div>
+
+            {% if activity['act_status'] == 0 %}
+              <span class="new badge light-blue darken-2"> To be graded </span>
+            {% elseif activity['act_status'] == 1 %}
+              <span class="new badge indigo"> In progress </span>
+            {% elseif activity['act_status'] == 2 %}
+              <span class="new badge green darken-3"> Graded </span>
+            {% endif %}
+
+
                 {# if user is not a simple collaborator #}
                 <!-- i had to make a div to contain the buttons because of marginalise and did the style inside
                  it to override the important aspects of all the classes -->
+
                   {% if is_granted('ROLE_ACTIVITY_MANAGER') or is_granted('ROLE_HR') %}
                   <div class="button-field col s5">
                     <form action="{{ url('activityModify',{'actId' : activity['act_id']})}}">
@@ -60,11 +73,12 @@ Activity list
               {% endif %}
 
 
+
           </div>
 
           <div class="collapsible-body">details
             <div class="row">
-            {{ activity['act_objectives']  }}
+
             <br>
             Created on : {{ activity['act_inserted']  }} - Quotes deadline : {{ activity['act_quotes_deadline']  }}
             <br>
@@ -77,14 +91,42 @@ Activity list
               #}
 
             </div>
+            <div class="row">
+              {% if is_granted('ROLE_ACTIVITY_MANAGER') or is_granted('ROLE_HR') %}
+              <div class="button-field col s5">
+                <form action="{{ url('activityModify',{'actId' : activity['act_id']})}}">
+                  <button type="submit" class="validate"> MODIFY </button>
+                </form>
+
+                  <button id="" type="submit" class="validate"><a href="{{ url('activityResults',{'actId' : activity['act_id']}) }}">RESULTS</a></button>
+                </div>
+              {% endif %}
+
+              {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR']))%}
+                <div class="button-field col s5">
+                  <form action="{{ url('activityGrade',{'actId' : activity['act_id']})}}">
+                    <button type="submit" class="validate"> GRADE </button>
+                  </form>
+                </div>
+              {% else %}
+              <div class="button-field col s5">
+                
+                  <a href=""><button style="background-color: red;" ><i class="fa fa-ban" aria-hidden="true"></i> GRADE </button></a>
+
+              </div>
+              {% endif %}
+
+            </div>
           </div>
         </li>
       </ul>
     {% endfor %}
-    <div class="row">
-      <div class="button-field col s10">
-          <a href="{{ path('activityCreationParameters') }}"><button type="submit" class="validate" >ADD ACTIVITIES</button></a>
-      </div>
+    <ul class="collection">
+      <li class="collection-item"></li>
+      <br><br> <!-- empt ul to make space for fixed add button -->
+    </ul>
+    <div class="fixed-action-btn">
+            <a href="{{ path('activityCreationParameters') }}"><button type="submit" class="waves-effect waves-light btn-large green accent-4">ADD ACTIVITY</button></a>
     </div>
   </section>
 
