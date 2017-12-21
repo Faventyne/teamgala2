@@ -14,6 +14,9 @@ Select participants
 
 {% block content %}
   <section class="col s10">
+    <div class="" style="opacity: 0.00001;">
+    aempty div used to circumnavigate the materialise bug which moves the first badge element of the list
+    </div>
       {#{{ form_start(form,{'attr': {'class': 'foo'}}) }}#}
 
     <input type="hidden" name="update" placeholder="{{ update }}">
