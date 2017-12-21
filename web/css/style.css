@@ -629,6 +629,12 @@ h2.header{
     text-align: center;
   }
 
+  .result-chart{
+
+    margin-top:auto;
+    margin-bottom: auto;
+  }
+
   /***HOMEPAGE***/
   #mainHomepage{
     background-image: url("../lib/img/market.jpg");
