@@ -50,12 +50,17 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row result-title col s11 m10">
+    <div class="row result-title col s5 m10">
         <h3> Result of {{ activity.name }} </h3>
         <h5> Grades on {{ upperbound }} </h5>
     </div>
-    <div class="row col s11 m10 result-chart">
+    <div class="row col s5 m10 result-chart">
         <div id="chart_div"></div>
     </div>
+
+    <!-- CDN : jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('js/resultsReSize.js') }}">
+    </script>
 
 {% endblock %}
