@@ -77,7 +77,7 @@ aempty div used to circumnavigate the materialise bug which moves the first badg
                                 <button type="submit" class="validate"> MODIFY </button>
                             </form>
                         </div>
-               
+
                         {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR'])) %}
                             <div class="button-field col
                             {% if activity['act_status'] == 0 %}
@@ -115,11 +115,11 @@ aempty div used to circumnavigate the materialise bug which moves the first badg
         </li>
       </ul>
     {% endfor %}
-    <ul class="collection">
+    <ul id="hiddenul" class="collection">
       <li class="collection-item"></li>
       <br><br> <!-- empt ul to make space for fixed add button -->
     </ul>
-    <div class="fixed-action-btn">
+    <div id="fixedButton" class="fixed-action-btn">
             <a href="{{ path('activityCreationParameters') }}"><button type="submit" class="waves-effect waves-light btn-large green accent-4">ADD ACTIVITY</button></a>
     </div>
   </section>
