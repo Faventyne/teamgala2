@@ -29,11 +29,11 @@ Activity list
             </div>
 
             {% if activity['act_status'] == 0 %}
-              <span class="new badge light-blue darken-2"> To be graded </span>
+              <span id="gradeBadge" class="new badge light-blue darken-2"> To be graded </span>
             {% elseif activity['act_status'] == 1 %}
-              <span class="new badge indigo"> In progress </span>
+              <span id="gradeBadge" class="new badge indigo"> In progress </span>
             {% elseif activity['act_status'] == 2 %}
-              <span class="new badge green darken-3"> Graded </span>
+              <span id="gradeBadge" class="new badge green darken-3"> Graded </span>
             {% endif %}
 
 
@@ -78,7 +78,7 @@ Activity list
                 </div>
               {% else %}
               <div class="button-field col s5">
-                
+
                   <a href=""><button style="background-color: red;" ><i class="fa fa-ban" aria-hidden="true"></i> GRADE </button></a>
 
               </div>
