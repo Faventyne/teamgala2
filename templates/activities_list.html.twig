@@ -32,7 +32,7 @@ aempty div used to circumnavigate the materialise bug which moves the first badg
             {% if activity['act_status'] == 0 %}
               <span id="gradeBadge" class="new badge light-blue darken-2"> To be graded </span>
             {% elseif activity['act_status'] == 1 %}
-              <span id="gradeBadge" class="new badge indigo"> In progress </span>
+              <span id="gradeBadge" class="new badge blue-grey"> In progress </span>
             {% elseif activity['act_status'] == 2 %}
               <span id="gradeBadge" class="new badge green darken-3"> Graded </span>
             {% endif %}
@@ -45,11 +45,11 @@ aempty div used to circumnavigate the materialise bug which moves the first badg
 
           </div>
 
-          <div class="collapsible-body">details
+          <div class="collapsible-body">Details :
             <div class="row">
 
             <br>
-            Created on : {{ activity['act_inserted']  }} - Quotes deadline : {{ activity['act_quotes_deadline']  }}
+            Created on : {{ activity['act_inserted']  }} - Grades deadline : {{ activity['act_quotes_deadline']  }}
             <br>
             Grade type : {{ activity['cri_gradetype']  }}
             <br>
@@ -77,7 +77,7 @@ aempty div used to circumnavigate the materialise bug which moves the first badg
                                 <button type="submit" class="validate"> MODIFY </button>
                             </form>
                         </div>
-
+               
                         {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR']))%}
                             <div class="button-field col
                             {% if activity['act_status'] == 0 %}
@@ -101,7 +101,38 @@ aempty div used to circumnavigate the materialise bug which moves the first badg
                                 <a href=""><button style="background-color: red;" ><i class="fa fa-ban" aria-hidden="true"></i> GRADE </button></a>
                             </div>
                         {% endif %}
-                  {% endif %}
+                    {% endif %}
+                  {% else %}
+                      <div class="button-field col
+                            {% if activity['act_status'] == 0 %}
+                            s6
+                            {% else %}
+                            s4
+                            {% endif %}
+                        ">
+                      {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR']))%}
+                            <div class="button-field col
+                            {% if activity['act_status'] == 0 %}
+                            s6
+                            {% else %}
+                            s4
+                            {% endif %}
+                            ">
+                                <form action="{{ url('activityGrade',{'actId' : activity['act_id']})}}">
+                                    <button type="submit" class="validate"> GRADE </button>
+                                </form>
+                            </div>
+                        {% else %}
+                            <div class="button-field col
+                            {% if activity['act_status'] == 0 %}
+                            s6
+                            {% else %}
+                            s4
+                            {% endif %}
+                            ">
+                                <a href=""><button style="background-color: red;" ><i class="fa fa-ban" aria-hidden="true"></i> GRADE </button></a>
+                            </div>
+                        {% endif %}
 
                   {% if activity['act_status'] == 1 %}
                     <div class="button-field col s4">
@@ -114,7 +145,8 @@ aempty div used to circumnavigate the materialise bug which moves the first badg
                             </button>
                         </div>
                   {% endif %}
-            {% endif %}
+
+          {% endif %}
             </div>
           </div>
         </li>

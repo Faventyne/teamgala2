@@ -27,25 +27,22 @@
     function drawChart() {
 
     var data = google.visualization.arrayToDataTable([
-    var data = google.visualization.arrayToDataTable([
-    ['City','2','3'],
-    {# ['City', {% for k in 0..data|length -2 %}{{ data[k].firstname }} {{ data[k].lastname }}, {% endfor %}{{data|last.firstname}} {{data|last.lastname}}]#}
-    ['Blabla', {% for k in 0..data|length -2 %}{{ data[k].result|round(2) }}, {% endfor %}{{data|last.result}}]
+    ['', '{% for k in 0..data|length -2 %}{{ data[k].firstname }} {{ data[k].lastname }}', {% endfor %}'{{data|last.firstname}} {{data|last.lastname}}'],
+    ['Grades', {% for k in 0..data|length -2 %}{{ data[k].result|round(2) }}, {% endfor %}{{data|last.result}}]
     ]);
 
     var materialOptions = {
     chart: {
-    title: 'Result of {{ activity.name }}'
+    {# title: 'Result of {{ activity.name }}' #}
     },
+
     hAxis: {
-    //title: 'Total Population',
     minValue: {{ lowerbound }},
     maxValue: {{ upperbound }}
     },
     vAxis: {
-    //title: 'Participants'
     },
-    bars: 'vertical'
+    bars: 'horizontal'
     };
     var materialChart = new google.charts.Bar(document.getElementById('chart_div'));
     materialChart.draw(data, materialOptions);
@@ -53,8 +50,14 @@
 {% endblock %}
 
 {% block content %}
+    <div class="row result-title col s11 m10">
+        <h3> Result of {{ activity.name }} </h3>
+        <h5> Grades on {{ upperbound }} </h5>
+    </div>
+    <div class="row col s11 m10">
+        <div id="chart_div"></div>
+    </div>
 
-    <div id="chart_div"></div>
 
     {% for user in data %}
         <div class="row">

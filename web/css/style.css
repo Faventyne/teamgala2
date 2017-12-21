@@ -38,7 +38,7 @@ header h5{
 }
 
 #footer{
-  z-index: 200;
+  z-index: 1;
 }
 
 /* jai du faire trois id pour les icons ca marche pas avec materialize pour le css */
@@ -244,7 +244,6 @@ margin-right: 25vw;
 
 
 #disabled{
-  font-size: 5vw;
   margin-left: 3vw;
   width: 77vw;
 }
@@ -316,6 +315,14 @@ form p{
 #pastilleUser{
    font-size: 2.5vw;
    background-color: #c60101;
+   width: 9vw;
+   height: 9vw;
+   padding-top: 2vw;
+   border-radius: 50%;
+}
+#pastilleHR{
+   font-size: 2.5vw;
+   background-color: #7f0f8e;
    width: 9vw;
    height: 9vw;
    padding-top: 2vw;
@@ -409,11 +416,7 @@ input+label{
   margin-left: 1vh
 }
 
-/*#homelist a i{
-  font-size: 3vh;
-  padding: 0.5vh;
-  margin-top: 3vh;
-}*/
+
 
 #homelist i{
  color : black;
@@ -562,6 +565,7 @@ h2.header{
   }
 
   #logoHomepage {
+    position: absolute;
     margin-top: 10px;
     width: 50px;
   }
@@ -569,11 +573,13 @@ h2.header{
     background-color: white;
     color: black;
   }
+  #nav div ul li{
+    margin-right: 3vw;
+  }
 
   #serpicoNav{
-    position: absolute;
     margin-left: 100px;
-
+    margin-top: -50px;
   }
 
 
@@ -612,6 +618,11 @@ h2.header{
 
   }
   /*** fin du header DT */
+
+  /***RESULT PAGE*****/
+  .result-title{
+    text-align: center;
+  }
 
   /***HOMEPAGE***/
 
@@ -679,7 +690,17 @@ display: none;
       padding-top: 3.5vw;
    }
    #pastilleUser{
+     padding-top: 3.5vw;
+   }
+   #pastilleHR{
     padding-top: 3.5vw;
+   }
+
+   /*user create*/
+
+   #disabled{
+     margin-left: 1vw;
+     width: 80.5vw;
    }
    /* activity list DT changes*/
    #gradeBadge{

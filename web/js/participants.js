@@ -1,6 +1,9 @@
 $(function(){
     
+    update = $('#update').val();
+    console.log('update : ' + update);
 
+    
     $('.btn-large').css('background-color','grey');
     $('.btn-large').on("click",function(e){
 
@@ -8,32 +11,47 @@ $(function(){
 
         var nb_selected_participants = $('.red').length;
 
-        if(nb_selected_participants>=2){
+        if((nb_selected_participants>=2) || (update==true && nb_selected_participants>=1)){
 
             var usrId = [];
             $('.red').each(function(){
                 usrId.push($(this).data("participant-id"));
             });
             //parId=parId.serializeArray();
-            var curUrl = $(location).attr('href');
-            var actId = curUrl.substr(curUrl.lastIndexOf('/') + 1);
-
-            $.ajax({
-
-
-
-
-                url : '../../../ajax/activity/' + actId,
-                data : {usrId:usrId},
-                method : 'POST',
-                //dataType : 'json',
-                success: function(){
-                    console.log("Success");
-                    window.location = '../../../myactivities';
-                }
-            })
-
+            if (update==true) {
+                actId = $('#actId').val();
+                console.log(actId);
+                $.ajax(
+                        {
+                            url : '../../ajax/activity/' + actId,
+                            data : {usrId:usrId},
+                            method : 'POST',
+                            //dataType : 'json',
+                            success: function(){
+                                console.log("Success");
+                                window.location = '../../myactivities';
+                            }
+                           }
+                );
+            } else {
+                var curUrl = $(location).attr('href');
+                var actId = curUrl.substr(curUrl.lastIndexOf('/') + 1);
+                console.log(actId);
+                $.ajax(
+                        {
+                            url : '../../../ajax/activity/' + actId,
+                            data : {usrId:usrId},
+                            method : 'POST',
+                            //dataType : 'json',
+                            success: function(){
+                                console.log("Success");
+                                window.location = '../../../myactivities';
+                            }
+                           }
+                );
+            }
         }
+        
     });
 
 

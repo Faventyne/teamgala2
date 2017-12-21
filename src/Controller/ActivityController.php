@@ -96,6 +96,7 @@ class ActivityController extends MasterController
         return $app['twig']->render('participants_list.html.twig',
             [
                 'participants' => $result,
+                'actId' => 0,
                 'update' => false,
             ]);
 
@@ -219,6 +220,7 @@ class ActivityController extends MasterController
             [
                 'participants' => $allUsers,
                 'activeId' => $activeId,
+                'actId' => $actId,
                 'update' => true,
             ]);
         }
@@ -379,12 +381,13 @@ class ActivityController extends MasterController
                     }
 
                     $results[$i] /= array_sum($weights);
-
                 }
 
                     // 2 - Insert in DB participant results
 
                 $renderedData = [];
+
+
                 foreach ($activityUsers as $key => $activityUser) {
 
                     $id = $activityUser->getUsrId();
