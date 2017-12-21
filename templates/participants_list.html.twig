@@ -18,11 +18,6 @@ Select participants
     <input type="text" name="fakesearchbar" placeholder="FAKE SEARCH BAR">
     <input type="hidden" name="update" placeholder="{{ update }}">
     {% for participant in participants %}
-        {%for id in activeId %}
-            {% if participant.id == id %}
-                active
-            {% endif %}
-        {% endfor %}
       <ul class="collection">
         <li class="collection-item">
             {{ participant['firstname']  }}

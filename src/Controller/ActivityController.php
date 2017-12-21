@@ -214,7 +214,6 @@ class ActivityController extends MasterController
             foreach ($list as $key=>$value) {
                 $activeId [] = $value['usr_id'];
             }
-            print_r($activeId);
             
             return $app['twig']->render('participants_list.html.twig',
             [
