@@ -12,6 +12,9 @@ User list
 {% endblock %}
 {% block content %}
   <section class="col s10">
+    <div class="" style="opacity: 0.00001;">
+    aempty div used to circumnavigate the materialise bug which moves the first badge element of the list
+    </div>
 
     {% for user in users %}
       <ul class="collapsible" data-collapsible="accordion">
