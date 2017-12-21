@@ -534,7 +534,8 @@ class ActivityController extends MasterController
                 $criId=intval($value);
             }
         }
-        
+        //print_r($_POST);
+        //die;
         // If it is the first time the users grades the activity
         if ($_POST['update']==false) {
             foreach ($_POST as $key => $value){
@@ -548,7 +549,7 @@ class ActivityController extends MasterController
                     $entityManager->persist($grade);
                     //Change activity status to 'On Grade'
                 } else {
-                    $grade->setComment($value);
+                    //$grade->setComment($value);
                 }
             }
 
@@ -582,7 +583,7 @@ class ActivityController extends MasterController
                     $grdId = $pdoStatement->fetch();
                     $gradeId = $grdId['grd_id'];
                     //get the grade object that correspond to the grd_id
-                    $grade = $repository->findOneById($gradeId);
+                    $grade = $repoG->findOneById($gradeId);
                     //modify the values
                     $grade->setParId($parId);
                     $grade->setActId($actId);
