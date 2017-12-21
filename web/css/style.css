@@ -241,6 +241,11 @@ margin-right: 25vw;
   margin: auto;
 }
 
+#formLogin input {
+ background-color: white;
+}
+
+
 
 
 #disabled{
