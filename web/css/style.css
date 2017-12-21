@@ -624,5 +624,11 @@ display: none;
    #pastilleUser{
     padding-top: 3.5vw;
    }
+   /* activity list DT changes*/
+   #gradeBadge{
+     padding-top: 2vw;
+     width: 16vw;
+     font-size: 2vw;
+   }
 
 }

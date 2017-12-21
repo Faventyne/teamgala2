@@ -15,7 +15,7 @@ Select participants
 {% block content %}
   <section class="col s10">
       {#{{ form_start(form,{'attr': {'class': 'foo'}}) }}#}
-    <input type="text" name="fakesearchbar" placeholder="FAKE SEARCH BAR">
+
     <input type="hidden" name="update" placeholder="{{ update }}">
     {% for participant in participants %}
       <ul class="collection">
