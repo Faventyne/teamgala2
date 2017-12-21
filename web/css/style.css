@@ -367,7 +367,23 @@ overflow: hidden;
 }
 
 /*** HOME PAGE ***/
+#mainHomepage #section{
+  margin-left: auto;
+  text-align: center;
+}
 
+#mainHomepage #section p{
+  font-size: 3vh;
+}
+#mainHomepage #donot{
+  display: none;
+  /*text-align: center;
+  font-size: 5vh;
+  color : white;
+  background-image: url("../lib/img/tea.jpg");
+  background-repeat: no-repeat ;
+  background-size: cover;*/
+}
 ul {
   margin-left: 6vw;
   font-size: 1.5vw;
@@ -477,6 +493,34 @@ h2.header{
   width: 50vw;
   }
 
+/****ABOUT PAGE****/
+
+#aboutpage{
+    display : none;
+}
+
+#aboutpagemobile h3{
+   margin-top: 2vh;
+    margin-left: 5vh;
+    font-size: 5vh;
+    font-weight: bold;
+}
+
+#aboutpagemobile h4{
+    margin-top: 2vh;
+    margin-left: 5vh;
+    font-size: 4vh;
+    font-style: italic;
+}
+
+#aboutpagemobile ul{
+    margin-top: 2vh;
+    margin-left: 5vh;
+    margin-right: 5vh;
+    font-size: 2vh;
+    border-bottom: 1px solid black;
+}
+
 
 
 @media screen and (max-width: 800px) {
@@ -571,8 +615,25 @@ h2.header{
 
   /***HOMEPAGE***/
 
+  #mainHomepage #section{
+    margin-left: auto;
+    text-align: center;
+  }
 
-
+  #mainHomepage #section p{
+    font-size: 3vh;
+  }
+  #mainHomepage #donot{
+    margin-left: auto;
+    text-align: center;
+    font-size: 5vh;
+    color : white;
+    background-image: url("../lib/img/tea.jpg");
+    background-repeat: no-repeat ;
+    background-size: cover;
+    display: block;
+    text-shadow: 2px 2px #554e4e;;
+  }
 
   #homelist{
     margin-top: 20vw;
@@ -626,5 +687,15 @@ display: none;
      width: 16vw;
      font-size: 2vw;
    }
+
+    /****ABOUT PAGE****/
+
+    #aboutpage{
+        display : block;
+    }
+
+    #aboutpagemobile{
+        display : none;
+    }
 
 }
