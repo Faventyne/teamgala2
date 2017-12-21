@@ -566,19 +566,19 @@ h2.header{
 
   #logoHomepage {
     position: absolute;
-    margin-top: 10px;
-    width: 50px;
+    margin-top: 5px;
+    width: 55px;
   }
   #nav div ul li a:hover{
     background-color: white;
     color: black;
   }
   #nav div ul li{
-    margin-right: 3vw;
+    margin-right: 2.5vw;
   }
 
   #serpicoNav{
-    margin-left: 100px;
+    margin-left: 70px;
     margin-top: -50px;
   }
 
