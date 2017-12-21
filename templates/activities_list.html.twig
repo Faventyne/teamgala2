@@ -61,29 +61,59 @@ Activity list
             </div>
             <div class="row">
               {% if is_granted('ROLE_ACTIVITY_MANAGER') or is_granted('ROLE_HR') %}
-              <div class="button-field col s5">
-                <form action="{{ url('activityModify',{'actId' : activity['act_id']})}}">
-                  <button type="submit" class="validate"> MODIFY </button>
-                </form>
 
-                  <button id="" type="submit" class="validate"><a href="{{ url('activityResults',{'actId' : activity['act_id']}) }}">RESULTS</a></button>
-                </div>
-              {% endif %}
+                  {% if activity['act_status'] != 2 %}
 
-              {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR']))%}
-                <div class="button-field col s5">
-                  <form action="{{ url('activityGrade',{'actId' : activity['act_id']})}}">
-                    <button type="submit" class="validate"> GRADE </button>
-                  </form>
-                </div>
-              {% else %}
-              <div class="button-field col s5">
-                
-                  <a href=""><button style="background-color: red;" ><i class="fa fa-ban" aria-hidden="true"></i> GRADE </button></a>
+                        <div class="button-field col
+                            {% if activity['act_status'] == 0 %}
+                            s6
+                            {% else %}
+                            s4
+                            {% endif %}
+                        ">
 
-              </div>
-              {% endif %}
+                            <form action="{{ url('activityModify',{'actId' : activity['act_id']}) }}">
+                                <button type="submit" class="validate"> MODIFY </button>
+                            </form>
+                        </div>
 
+                        {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR']))%}
+                            <div class="button-field col
+                            {% if activity['act_status'] == 0 %}
+                            s6
+                            {% else %}
+                            s4
+                            {% endif %}
+                            ">
+                                <form action="{{ url('activityGrade',{'actId' : activity['act_id']})}}">
+                                    <button type="submit" class="validate"> GRADE </button>
+                                </form>
+                            </div>
+                        {% else %}
+                            <div class="button-field col
+                            {% if activity['act_status'] == 0 %}
+                            s6
+                            {% else %}
+                            s4
+                            {% endif %}
+                            ">
+                                <a href=""><button style="background-color: red;" ><i class="fa fa-ban" aria-hidden="true"></i> GRADE </button></a>
+                            </div>
+                        {% endif %}
+                  {% endif %}
+
+                  {% if activity['act_status'] == 1 %}
+                    <div class="button-field col s4">
+                        <button id="" type="submit" class="validate" style="background-color: grey;" disabled>RESULTS</button>
+                    </div>
+                  {% elseif activity['act_status'] == 2 %}
+                        <div class="button-field col s12">
+                            <button id="" type="submit" class="validate">
+                                <a href="{{ url('activityResults',{'actId' : activity['act_id']}) }}" style="color: white;">RESULTS</a>
+                            </button>
+                        </div>
+                  {% endif %}
+            {% endif %}
             </div>
           </div>
         </li>
