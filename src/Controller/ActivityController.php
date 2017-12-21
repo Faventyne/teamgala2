@@ -383,6 +383,10 @@ class ActivityController extends MasterController
                     $results[$i] /= array_sum($weights);
                 }
 
+                //Overall grade is computed (just for display)
+                $avgActivityResult = 0;
+                for ($i = 0; $i < sizeof($weights); $i++)
+                { $avgActivityResult += $weights[$i]*$results[$i]/ array_sum($weights);}
                     // 2 - Insert in DB participant results
 
                 $renderedData = [];
@@ -427,7 +431,19 @@ class ActivityController extends MasterController
                             'lastname' => $lastname,
                             'result' => $result
                         ];
+                    //get weights
+                    $user = $repoU->findOneById($id);
+                    $userWeight = $user->getWeightIni();
+                    $weights[] = $userWeight;
+                    $results[] = $result;
                 }
+
+                //Overall grade is computed (just for display)
+                $avgActivityResult = 0;
+                for ($i = 0; $i < sizeof($weights); $i++){
+                    $avgActivityResult += $weights[$i]*$results[$i]/ array_sum($weights);
+                }
+
             }
 
 
@@ -437,6 +453,7 @@ class ActivityController extends MasterController
             [
                 'activity' => $activity,
                 'data' => $renderedData,
+                'overallgrade' => round($avgActivityResult,2),
                 'lowerbound' => $criteria[0]->getLowerbound(),
                 'upperbound' => $criteria[0]->getUpperbound()
             ]
