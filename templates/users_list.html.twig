@@ -35,14 +35,14 @@ User list
             {{user['position']}}
 <!-- if pour le role du user pour determiner ses droits -->
             {% if user['role'] == 1 %}
-            <span class="new badge" style=" font-size: 2.5vw; background-color: #0daa22; width: 30vw; height: 6vw; padding-top: 1vw;">Rights :
-            ADMIN
+            <span id="pastilleAdmin" class="new badge" >
+            A
             {% elseif user['role'] == 2 %}
-            <span class="new badge" style=" font-size: 2.5vw; background-color: #e08516; width: 30vw; height: 6vw; padding-top: 1vw;">Rights :
-            Manager
+            <span id="pastilleManager" class="new badge" >
+            M
             {% elseif user['role'] == 3 %}
-            <span class="new badge" style=" font-size: 2.5vw; background-color: #c60101; width: 30vw; height: 6vw; padding-top: 1vw;">Rights :
-            User
+            <span id="pastilleUser" class="new badge" >
+            U
             {% endif %}
           </span>
           <!-- fin du if pour le role du user -->
@@ -53,10 +53,10 @@ User list
             Poids : {{ user['weight']  }}
           </div>
           <div class="row">
-            <div class="button-field col s4">
+            <div class="button-field col s6">
               <button type="submit" class="validate modify-button" data-user-id={{ user['id'] }}>MODIFY</button>
             </div>
-            <div class="button-field col s4">
+            <div class="button-field col s6">
               <button type="submit" class="validate delete-button" data-user-id={{ user['id'] }}>DELETE</button>
             </div>
           </div>

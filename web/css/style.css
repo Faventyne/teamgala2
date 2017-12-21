@@ -298,6 +298,34 @@ form p{
   font-size: 15vw;
 }
 
+
+/* user list ***/
+
+#pastilleAdmin{
+   font-size: 2.5vw;
+   background-color: #0daa22;
+   width: 9vw;
+   height: 9vw;
+   padding-top: 2vw;
+   border-radius: 50%;
+}
+#pastilleManager{
+   font-size: 2.5vw;
+   background-color: #e08516;
+   width: 9vw;
+   height: 9vw;
+   padding-top: 2vw;
+   border-radius: 50%;
+}
+#pastilleUser{
+   font-size: 2.5vw;
+   background-color: #c60101;
+   width: 9vw;
+   height: 9vw;
+   padding-top: 2vw;
+   border-radius: 50%;
+}
+
 /**** activity list css*/
 
 #activityListDiv{
@@ -453,7 +481,7 @@ h2.header{
   width: 50vw;
   }
 
-  /* all elements in the header for the mobile version*/
+
 
 @media screen and (max-width: 800px) {
 #nav{
@@ -586,5 +614,15 @@ display: none;
       font-size: 3vh;
     }
    /***ACTIVITY MODIFY****/
+   /* user list DT changes*/
+   #pastilleAdmin{
+      padding-top: 3.5vw;
+   }
+   #pastilleManager{
+      padding-top: 3.5vw;
+   }
+   #pastilleUser{
+    padding-top: 3.5vw;
+   }
 
 }
