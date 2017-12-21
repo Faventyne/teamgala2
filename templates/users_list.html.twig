@@ -69,12 +69,12 @@ User list
       </li>
     </ul>
   {% endfor %}
-  <ul class="collection">
+  <ul id="hiddenul" class="collection">
     <li class="collection-item"></li>
     <br><br> <!-- empt ul to make space for fixed add button -->
   </ul>
 
-    <div class="fixed-action-btn">
+    <div id="fixedButton" class="fixed-action-btn">
       <form action="{{ url('createUser') }}">
       <button type="submit" class="waves-effect waves-light btn-large green accent-4">ADD USERS</button>
       </form>

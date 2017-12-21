@@ -24,7 +24,9 @@ height: 15vw;
 }
 
 
-
+#hiddenul{
+  opacity: 0.00001;
+}
 header h4{
   display: none;
 }
@@ -202,8 +204,9 @@ header h5{
 
 /*********** end of header ***************/
 
-.fixed-action-btn{
-margin-right: 25vw;
+#fixedButton{
+  margin-right: 20vw;
+  margin-bottom: 5vh;
 }
 .btn-large{
   width: 50vw;
@@ -748,6 +751,10 @@ display: none;
 
     #aboutpagemobile{
         display : none;
+    }
+    #fixedButton{
+      margin-right: 25vw;
+      margin-bottom: 4vh;
     }
 
 }
