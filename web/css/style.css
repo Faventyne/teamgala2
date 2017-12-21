@@ -632,9 +632,8 @@ h2.header{
   }
 
   .result-chart{
-
-    margin-top:auto;
-    margin-bottom: auto;
+    width: 80vw;
+    margin-top: 20vh;
   }
 
   /***HOMEPAGE***/
@@ -650,7 +649,7 @@ h2.header{
     color: white;
     text-shadow: 1px 1px #554e4e;
   }
-  
+
 
   #mainHomepage img{
     margin-bottom: -6vh;
