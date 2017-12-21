@@ -92,22 +92,23 @@
    <div class="nav-wrapper black">
      <a href="{{ path('home') }}" class="brand-logo"><img id="logoHomepage" src="{{ asset('lib/img/logo.png') }}" ><span id="serpicoNav">Serpico</span></a>
      <ul id="nav-mobile" class="right ">
-       <li><a href="{{ path('myActivities') }}">Activities <i class="fa fa-briefcase" aria-hidden="true"></i></a></li>
-       <li><a href="{{ path('createUser') }}">Users <i class="fa fa-users" aria-hidden="true"></i></a></li>
+       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+       <li><a href="{{ path('myActivities') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Activities </a></li>
+       <li><a href="{{ path('createUser') }}"> <i class="fa fa-users" aria-hidden="true"></i> Users </a></li>
        <li><a href="{{ path('profile') }}">
-         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-          {{ currentuser.firstname }} {{ currentuser.lastname }} Profile <i class="fa fa-cog" aria-hidden="true"></i>
 
+          <i class="fa fa-cog" aria-hidden="true"> {{ currentuser.firstname }} {{ currentuser.lastname }} Profile </i>
+        </a>
+      </li>
+      <li>
+        <a href="{{ path('admin_logout') }}"><i class="fa fa-sign-out" aria-hidden="true"> Log Out </i></a>
+      </li>
          {% else %}
-          Please Sign in
+        <li> Please Sign </li>
          {% endif %}
 
-       </a></li>
-       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-         <li>
-           <a href="{{ path('admin_logout') }}">Log Out <i class="fa fa-sign-out" aria-hidden="true"></i></a>
-         </li>
-       {% endif %}
+
+
 
      </ul>
    </div>
