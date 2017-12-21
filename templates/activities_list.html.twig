@@ -41,38 +41,6 @@ Activity list
                 <!-- i had to make a div to contain the buttons because of marginalise and did the style inside
                  it to override the important aspects of all the classes -->
 
-                  {% if is_granted('ROLE_ACTIVITY_MANAGER') or is_granted('ROLE_HR') %}
-                  <div class="button-field col s5">
-                    <form action="{{ url('activityModify',{'actId' : activity['act_id']})}}">
-                      <button type="submit" class="validate"> MODIFY </button>
-                    </form>
-                    </div>
-                    <div class="button-field col s5">
-                      <button id="alexButton" type="submit" class="validate"><a href="{{ url('activityResults',{'actId' : activity['act_id']}) }}">RESULTS</a></button>
-                    </div>
-                  {% endif %}
-
-
-                    {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR']))%}
-                    <div class="button-field col s5">
-                        <!-- Grading is not possible after every participant has submitted its grades -->
-                      {% if activity['act_status'] != 2 %}
-                        <form action="{{ url('activityGrade',{'actId' : activity['act_id']})}}">
-                          <button type="submit" class="validate"> GRADE </button>
-                        </form>
-                      {% endif %}
-                    </div>
-                    {% endif %}
-
-              {% if activity['act_status'] == 0 %}
-                <span class="new badge light-blue darken-2"> To be graded </span>
-              {% elseif activity['act_status'] == 1 %}
-                <span class="new badge indigo"> On grade </span>
-              {% elseif activity['act_status'] == 2 %}
-                <span class="new badge green darken-3"> Graded </span>
-              {% endif %}
-
-
 
           </div>
 
