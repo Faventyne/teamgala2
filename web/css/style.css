@@ -244,7 +244,6 @@ margin-right: 25vw;
 
 
 #disabled{
-  font-size: 5vw;
   margin-left: 3vw;
   width: 77vw;
 }
@@ -401,11 +400,7 @@ input+label{
   margin-left: 1vh
 }
 
-/*#homelist a i{
-  font-size: 3vh;
-  padding: 0.5vh;
-  margin-top: 3vh;
-}*/
+
 
 #homelist i{
  color : black;
@@ -633,6 +628,13 @@ display: none;
    }
    #pastilleHR{
     padding-top: 3.5vw;
+   }
+
+   /*user create*/
+
+   #disabled{
+     margin-left: 1vw;
+     width: 80.5vw;
    }
    /* activity list DT changes*/
    #gradeBadge{
