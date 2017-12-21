@@ -29,10 +29,10 @@
             {% for participant in stage.participants %}
 
                 <div class="row">
-                    <div class="input-field col s5 m3">
+                    <div class="input-field col s6 m4">
                     {{ participant.usr_firstname }}
                     </div>
-                    <div class="input-field col s5 m3">
+                    <div class="input-field col s6 m4">
                         <label for="grade"> Valeur </label>
                         {% if stage.criterion.step is null %}
                             {%  if participant.grade == NULL %}
@@ -52,15 +52,18 @@
                             {% endif %}
                         {% endif %}
                     </div>
-                    <div class="input-field col s10 m1"></div>
+                <!--</div>
+                <div class="row"> -->
+                    <div class="input-field col s12 m4"> 
                         <label for="comment"> Comment </label>
                         {% if participant.grade == NULL %}
                             <input type="text" id="comment" name="comment-{{ participant.usr_id }}">
                         {% else %}
                             <input type="text" id="comment" name="comment-{{ participant.usr_id }}" value="{{ participant.comment }}">
                         {% endif %}
-
+                    </div>
                 </div>
+                
 
 
             {% endfor %}

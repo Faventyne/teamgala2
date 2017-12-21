@@ -194,6 +194,15 @@ class ActivityController extends MasterController
             $entityManager->persist($activity);
             $entityManager->persist($criterion);
             $entityManager->flush();
+            
+            //
+            $entityManager = $this->getEntityManager($app) ;
+            $repository = $entityManager->getRepository(\Model\User::class);
+            $result = [];
+            foreach ($repository->findAll() as $user) {
+                $result[] = $user->toArray();
+            }
+            
             return $app['twig']->render('participants_list.html.twig',
             [
                 'participants' => [],
@@ -234,7 +243,7 @@ class ActivityController extends MasterController
         foreach ($participants as $participant) {
             $id = $participant['usr_id'];
             $connected = $app['security.token_storage']->getToken()->getUser()->getId();
-            $sql = "SELECT grd_value FROM grade WHERE grd_graded_id=:id AND activity_user_activity_act_id=:actId AND activity_user_user_usr_id=:connected";
+            $sql = "SELECT grd_value, grd_comment FROM grade WHERE grd_graded_id=:id AND activity_user_activity_act_id=:actId AND activity_user_user_usr_id=:connected";
             $pdoStatement = $app['db']->prepare($sql);
             $pdoStatement->bindValue(':id',$id);
             $pdoStatement->bindValue(':actId', $actId);
@@ -242,6 +251,7 @@ class ActivityController extends MasterController
             $pdoStatement->execute();
             $grd = $pdoStatement->fetch();
             $participant['grade']=$grd['grd_value'];
+            $participant['comment']=$grd['grd_comment'];
             if ($grd['grd_value']!= null) {
                 $update = true ;
             };
@@ -524,7 +534,8 @@ class ActivityController extends MasterController
                 $criId=intval($value);
             }
         }
-        
+        //print_r($_POST);
+        //die;
         // If it is the first time the users grades the activity
         if ($_POST['update']==false) {
             foreach ($_POST as $key => $value){
@@ -538,7 +549,7 @@ class ActivityController extends MasterController
                     $entityManager->persist($grade);
                     //Change activity status to 'On Grade'
                 } else {
-                    $grade->setComment($value);
+                    //$grade->setComment($value);
                 }
             }
 
@@ -572,7 +583,7 @@ class ActivityController extends MasterController
                     $grdId = $pdoStatement->fetch();
                     $gradeId = $grdId['grd_id'];
                     //get the grade object that correspond to the grd_id
-                    $grade = $repository->findOneById($gradeId);
+                    $grade = $repoG->findOneById($gradeId);
                     //modify the values
                     $grade->setParId($parId);
                     $grade->setActId($actId);
