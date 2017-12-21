@@ -29,6 +29,9 @@ class AddActivityCriteriaForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+        $defaultDeadline= new \DateTime();
+        $defaultDeadline->add(new \DateInterval('P30D'));
+
         $builder->add('name', TextType::class,
             [
                 'label' => 'Activity name',
@@ -52,9 +55,10 @@ class AddActivityCriteriaForm extends AbstractType
                 //'format' => 'dd/MM/yyyy',
                 //'placeholder' => 'dd/mm/yyyy',
                 'widget' => 'single_text',
-                'label' => 'Grading deadline (dd/mm/yyyy)',
+                'label' => 'Grading deadline',
                 'html5' => false,
                 'attr' => ['class' => 'datepicker'],
+                'data' => $defaultDeadline,
                 'constraints' => [
                     new Assert\NotBlank(),
                     //new Assert\DateTime(['format' => 'd/m/Y'])
