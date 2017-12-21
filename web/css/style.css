@@ -37,6 +37,9 @@ header h5{
   margin-left: 50px;
 }
 
+#footer{
+  z-index: 200;
+}
 
 /* jai du faire trois id pour les icons ca marche pas avec materialize pour le css */
 #returnMenu {
@@ -82,13 +85,13 @@ header h5{
   padding: 10vw;
   color: white;
   font-size: 5vw;
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 95vw;
   margin: auto;
   margin-top: 0vh;
   margin-left: 7vw;
-  z-index: 4;
+  z-index: 51;
   background: linear-gradient(to left, #111111 , #000000);
   border-left: 2vw outset grey;
   box-shadow: 0vw 2vw 3vw grey;
@@ -121,13 +124,13 @@ header h5{
   color: white;
   padding: 10vw;
   font-size: 5vw;
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 95vw;
   margin: auto;
   margin-top: 0vh;
   margin-left: -2vw;
-  z-index: 3;
+  z-index: 50;
   background: linear-gradient(to right, #111111 , #000000);
   border-right: 2vw outset grey;
   box-shadow: 0vw 2vw 3vw grey;
@@ -209,7 +212,6 @@ margin-right: 25vw;
   background-color: green;
   font-size: 3vw;
   border-radius: 2vw;
-
 }
 
 .action-button{
@@ -292,6 +294,23 @@ form p{
 .collection{
   font-size: 3.5vw;
 }
+#expand{
+  font-size: 15vw;
+}
+
+/**** activity list css*/
+
+#activityListDiv{
+  margin-left: 10vw;
+  font-size: 4vw;
+  width: 40vw;
+}
+#activityListSpan{
+  font-size: 2.5vw;
+
+}
+
+
 #userPhotoDiv{
 border: 1px solid darkgrey;
 background-color: darkgrey;
@@ -305,7 +324,7 @@ overflow: hidden;
 #userPhoto{
   height: 100%;
   width: 100%;
-margin: 0px;
+  margin: 0px;
 }
 
 #alexButton{
