@@ -244,6 +244,7 @@ margin-right: 25vw;
 
 
 #disabled{
+  font-size: 5vw;
   margin-left: 3vw;
   width: 77vw;
 }
@@ -608,12 +609,7 @@ display: none;
     #PhotoMyProfile h6{
       font-size: 3vh;
     }
-    /** create user mods */
-    #disabled{
-      margin-left: 1vw;
-      width: 80.5vw;
-    }
-
+   /***ACTIVITY MODIFY****/
    /* user list DT changes*/
    #pastilleAdmin{
       padding-top: 3.5vw;
