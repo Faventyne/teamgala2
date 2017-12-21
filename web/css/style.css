@@ -396,6 +396,11 @@ overflow: hidden;
   background-repeat: no-repeat ;
   background-size: cover;*/
 }
+
+#mainHomepage #donot p {
+  display: none;
+}
+
 ul {
   margin-left: 6vw;
   font-size: 1.5vw;
@@ -666,6 +671,10 @@ h2.header{
     display: block;
     text-shadow: 2px 2px #554e4e;
   }
+
+#mainHomepage #donot p {
+display: block;
+}
 
   #homelist{
     margin-top: 20vw;
