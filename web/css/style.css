@@ -38,7 +38,7 @@ header h5{
 }
 
 #footer{
-  z-index: 200;
+  z-index: 1;
 }
 
 /* jai du faire trois id pour les icons ca marche pas avec materialize pour le css */
