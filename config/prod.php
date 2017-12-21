@@ -73,7 +73,8 @@ $app->register(new Silex\Provider\SecurityServiceProvider(),
                         'logout_path' => '/admin/logout',
                         'invalidate_session' => true,
                         'target_url' => '/',
-                    ], 
+                    ],
+
                 ], 
             ],          
             'security.role_hierarchy' => [
@@ -82,13 +83,13 @@ $app->register(new Silex\Provider\SecurityServiceProvider(),
                 'ROLE_HR' => ['ROLE_COLLABORATOR','ROLE_ACTIVITY_MANAGER'],
                 'ROLE_ADMIN' => ['ROLE_COLLABORATOR','ROLE_ACTIVITY_MANAGER','ROLE_HR']   
             ],
-            
+
             'security.access_rules' => [
                 ['^/.+', ['ROLE_ACTIVITY_MANAGER','ROLE_HR','ROLE_ADMIN','ROLE_COLLABORATOR']],
                 ['^/activity', ['ROLE_ACTIVITY_MANAGER','ROLE_HR','ROLE_ADMIN','ROLE_COLLABORATOR']],
                 ['^/settings/users/create', ['ROLE_HR','ROLE_ADMIN']]
             ]
-            
+
         ]
 );
 
@@ -118,4 +119,6 @@ $app->register(new Silex\Provider\CsrfServiceProvider());
 
 $app->register(new \Silex\Provider\TranslationServiceProvider(),[
     'translator.domains' => []
+
+
 ]) ;

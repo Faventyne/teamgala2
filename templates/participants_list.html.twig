@@ -31,8 +31,6 @@ Select participants
               {{participant['position']}}
             <span class="secondary-content" >
               <button style="padding: 0vw;" class="action-button waves-effect waves-light btn" data-participant-id={{ participant['id'] }} {% if update == true %}{%for id in activeId %}{% if participant.id == id %}disabled{% endif %}{% endfor %}{% endif %}>ADD{% if update == true %}{%for id in activeId %}{% if participant.id == id %}ED{% endif %}{% endfor %}{%  endif %}</button>
-              <!-- le if sera pour ajoute ou non  -->
-
             </span>
         </li>
       </ul>
