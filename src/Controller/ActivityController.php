@@ -187,6 +187,7 @@ class ActivityController extends MasterController
         $modifyActivityForm->handleRequest($request);
         
         if ($modifyActivityForm->isSubmitted()) {
+            //Update the activity
             $activity->setDeadline($modifyActivityForm->get('deadline')->getData());
             $activity->setVisibility($modifyActivityForm->get('visibility')->getData());
             $activity->setObjectives($modifyActivityForm->get('objectives')->getData());
@@ -195,33 +196,32 @@ class ActivityController extends MasterController
             $entityManager->persist($criterion);
             $entityManager->flush();
             
-            //
             $entityManager = $this->getEntityManager($app) ;
             $repository = $entityManager->getRepository(\Model\User::class);
-            $result = [];
+            $allUsers = [];
             foreach ($repository->findAll() as $user) {
-                $result[] = $user->toArray();
+                $allUsers[] = $user->toArray();
+            }
+            
+            //Get the participants linked to the activity
+            $entityManager = $this->getEntityManager($app) ;
+            $repository = $entityManager->getRepository(\Model\User::class);
+            $activeUsers = [];
+            foreach ($repository->findByActId($actId) as $user) {
+                $activeUsers[] = $user->toArray();
             }
             
             return $app['twig']->render('participants_list.html.twig',
             [
-                'participants' => [],
+                'participants' => $allUsers,
+                'active' => $activeUsers,
             ]);
         }
         return $app['twig']->render('activity_modify.html.twig',
                 [
                     'form' => $modifyActivityForm->createView()
                 ]) ;
-        //Get the participants linked to the activity
-        $sql = "SELECT * FROM user INNER JOIN activity_user ON activity_user.user_usr_id=user.usr_id INNER JOIN activity ON activity.act_id=activity_user.activity_act_id WHERE act_id=:actId";
-        $pdoStatement = $app['db']->prepare($sql);
-        $pdoStatement->bindValue(':actId', $actId);
-        $pdoStatement->execute();
-        $participants = $pdoStatement->fetchAll();
-        var_dump($activity);
         
-        
-        return print_r($participants) ;
     }
     //Grade an activity (all users)
     public function gradeAction(Request $request, Application $app, $actId){
