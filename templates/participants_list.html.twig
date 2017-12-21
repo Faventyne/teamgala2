@@ -34,7 +34,7 @@ Select participants
                     {%for id in activeId %}
                                 {% if participant.id == id %}
                                     red inactive
-                                {% endif %}
+                                {% endif %}          
                     {% endfor %}
                 {% endif %}" data-participant-id={{ participant['id'] }}>ADD{% if update == true %}
                       {%for id in activeId %}
