@@ -1,0 +1,111 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block pagename %}
+    About
+{% endblock %}
+
+{% block content %}
+    <main>
+        <!----ABOUT FOR DESKTOP & TAB--->
+        <div id="aboutpage">
+            <div class="row">
+                <div class="col s12">
+                    <h2>About Serpico</h2>
+                </div>
+                <div class="col s6">
+                    <h3>Value proposition</h3>
+                    <ul>
+                        <li>ENHANCED 360 EVALUATION</li>
+                        <li>POSSIBILITY TO GRADE REGULAR TASKS AND PROJECTS</li>
+                        <li>HR ANALYTICS & FOLLOW-UP</li>
+                        <li>EMPLOYEE RECOGNITION & CONSIDERATION</li>
+                    </ul>
+                </div>
+                <div class="col s6">
+                    <img id="img1about" src="{{ asset('lib/img/grade.jpg')}}" width="100%" height="10%"/>
+                </div>
+                <div class="col s6">
+                    <img id="img1about" src="{{ asset('lib/img/Capture.PNG')}}" width="100%" height="10%"/>
+                </div>
+                <div class="col s6">
+                    <h3>Three kinds of users</h3>
+                    <ul>
+                        <li>HR Resources</li>
+                        <li>Activity leaders</li>
+                        <li>Collaborators</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <h3>Grades & Results</h3>
+                    <ul>
+                        <li>Can be a new / integrated indicator into an
+                            existing grading method</li>
+                        <li>Can integrate more sophisticated quoting
+                            concepts (legitimacy, bonus/penalties...)</li>
+
+                    </ul>
+                </div>
+                <div class="col s6">
+                    <img id="img1about" src="{{ asset('lib/img/stock.jpg')}}" width="100%" height="10%"/>
+                </div>
+                <div class="col s6">
+                    <img id="img1about" src="{{ asset('lib/img/market.jpg')}}" width="100%" height="10%"/>
+                </div>
+                <div class="col s6">
+                    <h3>Market study : an actual & provend trend</h3>
+                    <ul>
+                        <li>13 HR Directors met (banking, industry &
+                            construction leaders)</li>
+                        <li>Out of the 70 % interested (9/13), they gave a 7,5
+                            out of 10 grade on the benefit they could retrieve
+                            with Serpico.</li>
+                        <li>Ready to commit financially</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!----ABOUT FOR MOBILE--->
+        <div id="aboutpagemobile">
+            <h3>About Serpico</h3>
+            <h4>Value proposition</h4>
+            <ul>
+                <li>ENHANCED 360 EVALUATION</li>
+                <li>POSSIBILITY TO GRADE REGULAR TASKS AND PROJECTS</li>
+                <li>HR ANALYTICS & FOLLOW-UP</li>
+                <li>EMPLOYEE RECOGNITION & CONSIDERATION</li>
+            </ul>
+        <br>
+            <h4>Three kinds of users</h4>
+            <ul>
+                <li>HR Resources</li>
+                <li>Activity leaders</li>
+                <li>Collaborators</li>
+            </ul>
+            <br>
+                <h4>Grades & Results</h4>
+             <ul>
+                   <li>Can be a new / integrated indicator into an existing grading method</li>
+                  <li>Can integrate more sophisticated quoting concepts (legitimacy, bonus/penalties...)</li>
+             </ul>
+            <br>
+            <h4>Market study : an actual & provend trend</h4>
+            <ul>
+                <li>13 HR Directors met (banking, industry &
+                    construction leaders)</li>
+                <li>Out of the 70 % interested (9/13), they gave a 7,5
+                    out of 10 grade on the benefit they could retrieve
+                    with Serpico.</li>
+                <li>Ready to commit financially</li>
+            </ul>
+
+        </div>
+    </main>
+{% endblock %}

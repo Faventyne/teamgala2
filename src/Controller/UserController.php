@@ -213,5 +213,9 @@ class UserController extends MasterController
 
     }
 
+    // view About Page
+    public function displayAbout(Request $request, Application $app){
 
+        return $app['twig']->render('homepage_desktop.html.twig');
+    }
 }

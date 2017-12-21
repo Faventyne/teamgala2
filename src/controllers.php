@@ -63,6 +63,10 @@ $routeActivityView->bind('activityView') ;
 $routeActivityResults = $app->get('/activity/results?actId={actId}', "Controller\ActivityController::resultsAction") ;
 $routeActivityResults->bind('activityResults') ;
 
+// About view page
+$routeAboutView = $app->get('/about', "Controller\UserController::displayAbout") ;
+$routeAboutView->bind('about') ;
+
 // Settings organization page
 $routeSettingsOrganization = $app->get('/settings/organization', "Controller\OrganizationController::addOrganizationAction") ;
 $routeSettingsOrganization->bind('settingsOrganization') ;

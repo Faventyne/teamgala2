@@ -1,0 +1,30 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Home page
+{% endblock %}
+
+{% block pagename %}
+    Home page
+{% endblock %}
+
+{% block content %}
+    <main id="mainHomepage">
+        <div class="container">
+            <div class="col s12" id="hometext">
+                <div id="section">
+                    <span class="flow-text"> <h1>Serpico</h1></span>
+                    <img src="{{ asset('lib/img/Serpico.png')}}" width="20%">
+                    <p>The collaborative evaluation solution</p>
+                </div>
+            </div>
+        </div>
+              <div class="col s12" id="donot">
+                <p>DO NOT SIMPLY ENGAGE PEOPLE,<p>
+                <p>MAKE THEM INFLUENCERS TO GET THEIR BEST</p>
+                </div>
+        <div>
+        </div>
+
+    </main>
+{% endblock %}
