@@ -121,7 +121,7 @@ class AddActivityCriteriaForm extends AbstractType
 
         if ($options['standalone']){
             $builder->add('submit', SubmitType::class,[
-                'label' => 'Ajouter participants'
+                'label' => 'Add participants'
             ]);
         }
     }

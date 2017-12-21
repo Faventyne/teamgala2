@@ -38,7 +38,7 @@ header h5{
 }
 
 #footer{
-  z-index: 200;
+  z-index: 1;
 }
 
 /* jai du faire trois id pour les icons ca marche pas avec materialize pour le css */
@@ -321,6 +321,14 @@ form p{
    padding-top: 2vw;
    border-radius: 50%;
 }
+#pastilleHR{
+   font-size: 2.5vw;
+   background-color: #7f0f8e;
+   width: 9vw;
+   height: 9vw;
+   padding-top: 2vw;
+   border-radius: 50%;
+}
 
 /**** activity list css*/
 
@@ -518,6 +526,7 @@ h2.header{
   }
 
   #logoHomepage {
+    position: absolute;
     margin-top: 10px;
     width: 50px;
   }
@@ -525,11 +534,13 @@ h2.header{
     background-color: white;
     color: black;
   }
+  #nav div ul li{
+    margin-right: 3vw;
+  }
 
   #serpicoNav{
-    position: absolute;
     margin-left: 100px;
-
+    margin-top: -50px;
   }
 
 
@@ -623,6 +634,9 @@ display: none;
       padding-top: 3.5vw;
    }
    #pastilleUser{
+     padding-top: 3.5vw;
+   }
+   #pastilleHR{
     padding-top: 3.5vw;
    }
    /* activity list DT changes*/

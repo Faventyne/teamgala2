@@ -16,7 +16,7 @@ $app->register(
     [
         'db.options' => [
             'driver'   => 'pdo_mysql',
-            'dbname'   => 'guillaumec_serpico',
+            'dbname'   => 'guillaumec_serpicopres',
             'host'     => 'wf3.progweb.fr',
             'user'     => 'guillaumec',
             'password' => 'webforce3'
@@ -82,10 +82,9 @@ $app->register(new Silex\Provider\SecurityServiceProvider(),
                 'ROLE_HR' => ['ROLE_COLLABORATOR','ROLE_ACTIVITY_MANAGER'],
                 'ROLE_ADMIN' => ['ROLE_COLLABORATOR','ROLE_ACTIVITY_MANAGER','ROLE_HR']   
             ],
-            
             'security.access_rules' => [
-                ['^/.+', ['ROLE_ACTIVITY_MANAGER','ROLE_HR','ROLE_ADMIN','ROLE_COLLABORATOR']],
-                ['^/activity', ['ROLE_ACTIVITY_MANAGER','ROLE_HR','ROLE_ADMIN','ROLE_COLLABORATOR']],
+                ['^/home | ^/profile | ^/myactivities | ^/activities | ^/activity/.+/grade | ^/activity/results', ['ROLE_ACTIVITY_MANAGER','ROLE_HR','ROLE_ADMIN','ROLE_COLLABORATOR']],
+                ['^/activity/create | ^/activity/.+/modify', ['ROLE_ACTIVITY_MANAGER','ROLE_HR','ROLE_ADMIN','ROLE_COLLABORATOR']],
                 ['^/settings/users/create', ['ROLE_HR','ROLE_ADMIN']]
             ]
             

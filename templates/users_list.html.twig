@@ -36,7 +36,7 @@ User list
             <br>
             {{user['position']}}
 <!-- if pour le role du user pour determiner ses droits -->
-            {% if user['role'] == 1 %}
+            {% if user['role'] == 4 %}
             <span id="pastilleAdmin" class="new badge" >
             A
             {% elseif user['role'] == 2 %}
@@ -45,6 +45,9 @@ User list
             {% elseif user['role'] == 3 %}
             <span id="pastilleUser" class="new badge" >
             U
+            {% elseif user['role'] == 1 %}
+            <span id="pastilleHR" class="new badge" >
+            HR
             {% endif %}
           </span>
           <!-- fin du if pour le role du user -->

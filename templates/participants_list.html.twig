@@ -13,6 +13,8 @@ Select participants
 {% endblock %}
 
 {% block content %}
+  <param name="update" value="{{ update }}" id="update">
+  <param name="actId" value="{{ actId }}" id="actId">
   <section class="col s10">
     <div class="" style="opacity: 0.00001;">
     aempty div used to circumnavigate the materialise bug which moves the first badge element of the list
@@ -44,9 +46,11 @@ Select participants
 <div class="fixed-action-btn">
 
     {#{{ form_row(form.submit,{'attr': {'class': 'waves-effect waves-light btn-large'}}) }}#}
-
+    {% if update==true %}
+        <button type="submit" class="waves-effect waves-light btn-large">MODIFY ACTIVITY</button>
+    {% else %}
         <button type="submit" class="waves-effect waves-light btn-large">CREATE ACTIVITY</button>
-
+    {% endif %}
 
 </div>
 {#{{ form_end(form) }}#}
