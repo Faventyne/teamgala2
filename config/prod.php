@@ -16,7 +16,7 @@ $app->register(
     [
         'db.options' => [
             'driver'   => 'pdo_mysql',
-            'dbname'   => 'guillaumec_serpicopres',
+            'dbname'   => 'guillaumec_serpico',
             'host'     => 'wf3.progweb.fr',
             'user'     => 'guillaumec',
             'password' => 'webforce3'

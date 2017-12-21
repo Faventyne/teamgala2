@@ -122,27 +122,30 @@
           <ul id="nav-mobile" class="right ">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
               <li>
-                <a href="{{ path('myActivities') }}">Activities
+                <a href="{{ path('myActivities') }}">
                   <i class="fa fa-briefcase" aria-hidden="true"></i>
+                  Activities                  
                 </a>
               </li>
               <li>
-                <a href="{{ path('settingsUsers') }}">Users
+                <a href="{{ path('settingsUsers') }}">
                   <i class="fa fa-users" aria-hidden="true"></i>
+                  Users
                 </a>
               </li>
               <li>
                 <a href="{{ path('profile') }}">
-
+                  <i class="fa fa-cog" aria-hidden="true"></i>
                   {{ currentuser.firstname }}
                   {{ currentuser.lastname }}
-                  Profile
-                  <i class="fa fa-cog" aria-hidden="true"></i>
+
+
                 </a>
               </li>
               <li>
-                <a href="{{ path('admin_logout') }}">Log Out
+                <a href="{{ path('admin_logout') }}">
                   <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  Log Out
                 </a>
               </li>
             {% else %}
