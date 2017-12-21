@@ -96,6 +96,7 @@ class ActivityController extends MasterController
         return $app['twig']->render('participants_list.html.twig',
             [
                 'participants' => $result,
+                'update' => false,
             ]);
 
 
@@ -173,14 +174,14 @@ class ActivityController extends MasterController
         //Get the datas about the activity selected
         $activity = new Activity();
         $entityManager = $this->getEntityManager($app) ;
-        $repository = $entityManager->getRepository(Activity::class) ;
-        $activity = $repository->findOneById($actId);    
+        $repoA = $entityManager->getRepository(Activity::class) ;
+        $activity = $repoA->findOneById($actId);    
         
         //Get the criteria of the activity
         $criterion = new Criterion();
         $entityManager = $this->getEntityManager($app) ;
-        $repository = $entityManager->getRepository(Criterion::class) ;
-        $criterion = $repository->findOneByActId($actId); 
+        $repoC = $entityManager->getRepository(Criterion::class) ;
+        $criterion = $repoC->findOneByActId($actId); 
         
         $formFactory = $app['form.factory'] ;
         $modifyActivityForm = $formFactory->create(AddActivityCriteriaForm::class, $criterion, ['standalone' => true]) ;
@@ -200,21 +201,25 @@ class ActivityController extends MasterController
             $repository = $entityManager->getRepository(\Model\User::class);
             $allUsers = [];
             foreach ($repository->findAll() as $user) {
-                $allUsers[] = $user->toArray();
+                $allUsers[] = $user->toArray($app);
             }
             
             //Get the participants linked to the activity
-            $entityManager = $this->getEntityManager($app) ;
-            $repository = $entityManager->getRepository(\Model\User::class);
-            $activeUsers = [];
-            foreach ($repository->findByActId($actId) as $user) {
-                $activeUsers[] = $user->toArray();
+            $sql = "SELECT usr_id FROM user INNER JOIN activity_user ON activity_user.user_usr_id=user.usr_id WHERE activity_user.activity_act_id=:actId";
+            $pdoStatement = $app['db']->prepare($sql);
+            $pdoStatement->bindValue(':actId',$actId);
+            $pdoStatement->execute();
+            $list = $pdoStatement->fetchAll();
+            $activeId = [];
+            foreach ($list as $key=>$value) {
+                $activeId [] = $value['usr_id'];
             }
             
             return $app['twig']->render('participants_list.html.twig',
             [
                 'participants' => $allUsers,
-                'active' => $activeUsers,
+                'activeId' => $activeId,
+                'update' => true,
             ]);
         }
         return $app['twig']->render('activity_modify.html.twig',

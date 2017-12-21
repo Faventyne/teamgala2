@@ -16,6 +16,7 @@ Select participants
   <section class="col s10">
       {#{{ form_start(form,{'attr': {'class': 'foo'}}) }}#}
     <input type="text" name="fakesearchbar" placeholder="FAKE SEARCH BAR">
+    <input type="hidden" name="update" placeholder="{{ update }}">
     {% for participant in participants %}
       <ul class="collection">
         <li class="collection-item">
@@ -25,8 +26,19 @@ Select participants
             <br>
               {{participant['position']}}
             <span class="secondary-content" >
-
-              <button class="waves-effect waves-light btn action-button" data-participant-id={{ participant['id'] }}>ADD</button>
+              <button class="waves-effect waves-light btn action-button
+                {%for id in activeId %}
+                            {% if participant.id == id %}
+                                 red inactive
+                            {% endif %}
+                        {% endfor %}
+              " data-participant-id={{ participant['id'] }}>ADD
+              {%for id in activeId %}
+                    {% if participant.id == id %}
+                       ED
+                    {% endif %}
+              {% endfor %}
+              </button>
               <!-- le if sera pour ajoute ou non  -->
 
             </span>
