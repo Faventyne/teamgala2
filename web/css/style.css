@@ -321,6 +321,14 @@ form p{
    padding-top: 2vw;
    border-radius: 50%;
 }
+#pastilleHR{
+   font-size: 2.5vw;
+   background-color: #7f0f8e;
+   width: 9vw;
+   height: 9vw;
+   padding-top: 2vw;
+   border-radius: 50%;
+}
 
 /**** activity list css*/
 
@@ -618,6 +626,9 @@ display: none;
       padding-top: 3.5vw;
    }
    #pastilleUser{
+     padding-top: 3.5vw;
+   }
+   #pastilleHR{
     padding-top: 3.5vw;
    }
    /* activity list DT changes*/
