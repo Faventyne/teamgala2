@@ -624,6 +624,12 @@ h2.header{
     text-align: center;
   }
 
+  .result-chart{
+
+    margin-top:auto;
+    margin-bottom: auto;
+  }
+
   /***HOMEPAGE***/
 
   #mainHomepage #section{
