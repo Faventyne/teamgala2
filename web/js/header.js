@@ -34,6 +34,11 @@ $(function() {
      $("#dropDownOptions").hide("slide", { direction: "left" }, 500);
   }
 });
+$( window ).resize(function() {
+if (window.innerWidth > 800) {
+   $("#logOutMenu").hide("slide", { direction: "right" }, 500);
+}
+});
 
 $( window ).resize(function() {
 if (window.innerWidth > 800) {
