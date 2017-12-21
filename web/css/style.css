@@ -526,6 +526,7 @@ h2.header{
   }
 
   #logoHomepage {
+    position: absolute;
     margin-top: 10px;
     width: 50px;
   }
@@ -533,11 +534,13 @@ h2.header{
     background-color: white;
     color: black;
   }
+  #nav div ul li{
+    margin-right: 3vw;
+  }
 
   #serpicoNav{
-    position: absolute;
     margin-left: 100px;
-
+    margin-top: -50px;
   }
 
 
