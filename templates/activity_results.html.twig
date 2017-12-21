@@ -27,8 +27,8 @@
     function drawChart() {
 
     var data = google.visualization.arrayToDataTable([
-    ['', '{% for k in 0..data|length -2 %}{{ data[k].firstname }} {{ data[k].lastname }}', {% endfor %}'{{data|last.firstname}} {{data|last.lastname}}'],
-    ['Grades', {% for k in 0..data|length -2 %}{{ data[k].result|round(2) }}, {% endfor %}{{data|last.result}}]
+    ['', '{% for k in 0..data|length -2 %}{{ data[k].firstname }} {{ data[k].lastname }}', {% endfor %}'{{data|last.firstname}} {{data|last.lastname}}','Overall average'],
+    ['Grades', {% for k in 0..data|length -2 %}{{ data[k].result|round(2) }}, {% endfor %}{{data|last.result}}, {{ overallgrade }}]
     ]);
 
     var materialOptions = {
@@ -57,17 +57,5 @@
     <div class="row col s11 m10">
         <div id="chart_div"></div>
     </div>
-
-
-    {% for user in data %}
-        <div class="row">
-            <div class="button-field col s5 m5">
-                {{ user.firstname }} {{ user.lastname }}
-            </div>
-            <div class="button-field col s5 m5">
-                {{ user.result|round(2) }} / {{ upperbound }}
-            </div>
-        </div>
-    {% endfor %}
 
 {% endblock %}

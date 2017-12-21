@@ -78,7 +78,7 @@ aempty div used to circumnavigate the materialise bug which moves the first badg
                             </form>
                         </div>
                
-                        {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR']))%}
+                        {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR'])) %}
                             <div class="button-field col
                             {% if activity['act_status'] == 0 %}
                             s6
@@ -101,52 +101,15 @@ aempty div used to circumnavigate the materialise bug which moves the first badg
                                 <a href=""><button style="background-color: red;" ><i class="fa fa-ban" aria-hidden="true"></i> GRADE </button></a>
                             </div>
                         {% endif %}
-                    {% endif %}
                   {% else %}
-                      <div class="button-field col
-                            {% if activity['act_status'] == 0 %}
-                            s6
-                            {% else %}
-                            s4
-                            {% endif %}
-                        ">
-                      {% if (activity['isParticipant'] == 1  and  is_granted(['ROLE_ACTIVITY_MANAGER', 'ROLE_COLLABORATOR','ROLE_HR']))%}
-                            <div class="button-field col
-                            {% if activity['act_status'] == 0 %}
-                            s6
-                            {% else %}
-                            s4
-                            {% endif %}
-                            ">
-                                <form action="{{ url('activityGrade',{'actId' : activity['act_id']})}}">
-                                    <button type="submit" class="validate"> GRADE </button>
-                                </form>
-                            </div>
-                        {% else %}
-                            <div class="button-field col
-                            {% if activity['act_status'] == 0 %}
-                            s6
-                            {% else %}
-                            s4
-                            {% endif %}
-                            ">
-                                <a href=""><button style="background-color: red;" ><i class="fa fa-ban" aria-hidden="true"></i> GRADE </button></a>
-                            </div>
-                        {% endif %}
-
-                  {% if activity['act_status'] == 1 %}
-                    <div class="button-field col s4">
-                        <button id="" type="submit" class="validate" style="background-color: grey;" disabled>RESULTS</button>
-                    </div>
-                  {% elseif activity['act_status'] == 2 %}
                         <div class="button-field col s12">
                             <button id="" type="submit" class="validate" style="margin-left: 36%;">
                                 <a href="{{ url('activityResults',{'actId' : activity['act_id']}) }}" style="color: white;">RESULTS</a>
                             </button>
                         </div>
                   {% endif %}
+              {% endif %}
 
-          {% endif %}
             </div>
           </div>
         </li>

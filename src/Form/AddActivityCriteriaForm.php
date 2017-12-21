@@ -59,6 +59,7 @@ class AddActivityCriteriaForm extends AbstractType
                 'html5' => false,
                 'attr' => ['class' => 'datepicker'],
                 'data' => $defaultDeadline,
+                'format' => 'dd MMMM, yyyy',
                 'constraints' => [
                     new Assert\NotBlank(),
                     //new Assert\DateTime(['format' => 'd/m/Y'])
