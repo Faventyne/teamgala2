@@ -386,6 +386,10 @@ overflow: hidden;
   color: white;
   font-size: 3.5vw;
 }
+/***ACTIVITY GRADE***/
+#buttonAC{
+  margin-left: 50%;
+}
 
 /*** HOME PAGE ***/
 #mainHomepage #section{
