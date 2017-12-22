@@ -27,7 +27,7 @@
     function drawChart() {
 
     var data = google.visualization.arrayToDataTable([
-    ['', '{% for k in 0..data|length -2 %}{{ data[k].firstname }} {{ data[k].lastname }}', {% endfor %}'{{data|last.firstname}} {{data|last.lastname}}','Overall average'],
+    ['',{% for k in 0..data|length -2 %}'{{ data[k].firstname }} {{ data[k].lastname }}', {% endfor %}'{{data|last.firstname}} {{data|last.lastname}}','Overall average'],
     ['Grades', {% for k in 0..data|length -2 %}{{ data[k].result|round(2) }}, {% endfor %}{{data|last.result}}, {{ overallgrade }}]
     ]);
 
@@ -50,8 +50,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row result-title col s5 m10">
-        <h3> Result of {{ activity.name }} </h3>
+    <div class="row col s5 m10" id="result-title">
+        <h3> {{ activity.name }} </h3>
         <h5> Grades on {{ upperbound }} </h5>
     </div>
     <div class="row col s5 m10 result-chart">

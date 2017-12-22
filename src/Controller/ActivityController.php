@@ -112,15 +112,20 @@ class ActivityController extends MasterController
         $entityManager = $this->getEntityManager($app) ;
 
         //return print_r($_POST['parId'])
-
+        $k=0;
         foreach ($_POST['usrId'] as $usrId) {
             $activityuser = new ActivityUser();
             $activityuser->setActId($actId);
             $activityuser->setUsrId($usrId);
             $entityManager->persist($activityuser);
-
-
+            $k+=1;
         }
+
+
+        $activity = $entityManager->getRepository(Activity::class)->findOneById($actId);
+        $nbParticipants = $activity->getNbParticipants();
+        $activity->setNbParticipants($nbParticipants + $k);
+        $entityManager->persist($activity);
         $entityManager->flush();
 
         return true;
@@ -482,18 +487,15 @@ class ActivityController extends MasterController
         $id = $app['security.token_storage']->getToken()->getUser()->getId();
 
     if($role != 4) {
-        $sql = "SELECT act_name,act_id,act_status,act_objectives,act_inserted,act_quotes_deadline,cri_gradetype,cri_lowerbound,cri_upperbound,cri_step FROM activity
+        $sql = "SELECT activity_user.user_usr_id, act_nbParticipants, act_name,act_id,act_status,act_objectives,act_inserted,act_progress,act_quotes_deadline,cri_gradetype,cri_lowerbound,cri_upperbound,cri_step FROM activity
+            INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id 
+            INNER JOIN criterion ON activity.act_id = criterion.activity_act_id
+            WHERE activity_user.user_usr_id = :id";
+    } else {
+        $sql = "SELECT activity_user.user_usr_id, act_nbParticipants, act_name,act_id,act_status,act_objectives,act_inserted,act_progress,act_quotes_deadline,cri_gradetype,cri_lowerbound,cri_upperbound,cri_step FROM activity
             INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id 
             INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
-            WHERE activity_user.user_usr_id=:id 
-            GROUP BY (activity.act_id)
-            ORDER BY activity.act_id";
-    } else {
-        $sql = "SELECT act_name,act_id,act_status,act_objectives,act_inserted,act_quotes_deadline,cri_gradetype,cri_lowerbound,cri_upperbound,cri_step FROM activity
-            INNER JOIN activity_user ON activity_user.activity_act_id=activity.act_id
-            INNER JOIN criterion ON activity.act_id = criterion.activity_act_id 
-            GROUP BY (activity.act_id)
-            ORDER BY activity.act_id";
+            GROUP BY activity.act_id";
     }
         $pdoStatement = $app['db']->prepare($sql);
         $pdoStatement->bindValue(':id', $id);
@@ -504,6 +506,7 @@ class ActivityController extends MasterController
             $participant['isParticipant'] = 1;
             $finalResult[] = $participant;
         }
+
 
         if($role != 1) {
             return $app['twig']->render('activities_list.html.twig',
@@ -531,8 +534,6 @@ class ActivityController extends MasterController
                     }
                 $finalResult[]=$actAdmin;
             }
-            //print_r($finalResult);
-            //die;
 
             return $app['twig']->render('activities_list.html.twig',
                 [
@@ -572,23 +573,31 @@ class ActivityController extends MasterController
                     $grade->setGradedId($key);
                     $grade->setValue(floatval($value));
                     $entityManager->persist($grade);
+
                     //Change activity status to 'On Grade'
                 } else {
                     //$grade->setComment($value);
                 }
+
             }
+
+
 
             $entityManager->flush();
 
             //Set status to 1 if user grades
             $repoA = $entityManager->getRepository(Activity::class);
+            $allGrades = pow(sizeof($entityManager->getRepository(ActivityUser::class)->findByActId($actId)),2);
+            $insertedGrades = sizeof($repoG->findByActid($actId));
+
             $activity = $repoA->findOneById($actId);
             $activity->setStatus(1);
+            $activity->setProgress(round(100 * ($insertedGrades/$allGrades),0));
             $entityManager->persist($activity);
             $entityManager->flush();
 
             //Check if all grades have been submitted, then result can now be computed
-            if(sizeof($repoG->findByActid($actId)) == pow(sizeof($entityManager->getRepository(ActivityUser::class)->findByActId($actId)),2))
+            if($insertedGrades == $allGrades)
             {
                 $activity->setStatus(2);
                 $entityManager->persist($activity);
@@ -623,17 +632,6 @@ class ActivityController extends MasterController
 
         return $app->redirect($app['url_generator']->generate('myActivities')) ;
     }
-
-    public function activityResults(Request $request, Application $app,$actId)
-    {
-
-
-
-
-
-    }
-
-
 
     /*Optional : release an activity (all users)
     public function resultsAction(Request $request, Application $app){

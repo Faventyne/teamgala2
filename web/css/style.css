@@ -48,6 +48,7 @@ header h5{
   margin-top: 2vw;
   position: absolute;
   font-size: 10vw;
+  padding-left: 3vw;
   color: white;
   text-shadow: 3px 3px 10px black;
 }
@@ -349,6 +350,11 @@ form p{
 
 }
 
+[name="details-title"]{
+  font-weight: bold;
+  font-size: 4vw;
+}
+
 
 #userPhotoDiv{
 border: 1px solid darkgrey;
@@ -537,7 +543,10 @@ h2.header{
     border-bottom: 1px solid black;
 }
 
-
+/***RESULT PAGE*****/
+#result-title{
+  text-align: center;
+}
 
 
 
@@ -635,7 +644,7 @@ h2.header{
   /*** fin du header DT */
 
   /***RESULT PAGE*****/
-  .result-title{
+  #result-title{
     text-align: center;
   }
 

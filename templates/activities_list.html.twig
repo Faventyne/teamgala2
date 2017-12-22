@@ -45,21 +45,48 @@ aempty div used to circumnavigate the materialise bug which moves the first badg
 
           </div>
 
-          <div class="collapsible-body">Details :
+          <div class="collapsible-body">
+              <div class="row">
+                  <div class="col s12 m12" name="details-title">
+                      Details
+                  </div>
+              </div>
             <div class="row">
+                <div class="col s6 m4">
+                    <i class="fa fa-clock-o" aria-hidden="true"></i> Grades deadline :
+                </div>
+                <div class="col s6 m4">
+                    {{ activity['act_quotes_deadline']|date('j F Y') }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4">
+                    <i class="fa fa-tasks" aria-hidden="true"></i> Progress :
+                </div>
+                <div class="col s8 m4">
+                    <div class="progress"><div class="determinate col s10 m10" style="width: {{ activity['act_progress'] }}%"></div></div>
+                </div>
+                <div class="col s4 m3">
+                    {{ activity['act_progress'] }}%
+                </div>
+            </div>
+              <div class="row">
+                  <div class="col s6 m4">
+                      <i class="fa fa-users" aria-hidden="true"></i> Participants :
+                  </div>
+                  <div class="col s6 m4">
+                      {{ activity['act_nbParticipants'] }}
+                  </div>
+              </div>
 
             <br>
-            Created on : {{ activity['act_inserted']  }} - Grades deadline : {{ activity['act_quotes_deadline']  }}
-            <br>
-            Grade type : {{ activity['cri_gradetype']  }}
-            <br>
-            Grade scale : from {{ activity['cri_lowerbound']  }} to {{ activity['cri_upperbound']  }} (increment : {{ activity['cri_step']  }})
+
               {#
-              As there is only one criterion, weight is not worth displaying
+              As there is only one criterion, weight is not worth displaying. Other parameters which are not that relevant are stored here
+               from {{ activity['cri_lowerbound']  }} to {{ activity['cri_upperbound']  }} (increment : {{ activity['cri_step']  }})
               {{ activity['weight']  }}
               #}
 
-            </div>
             <div class="row">
               {% if is_granted('ROLE_ACTIVITY_MANAGER') or is_granted('ROLE_HR') or is_granted('ROLE_COLLABORATOR') %}
 

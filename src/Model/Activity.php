@@ -42,6 +42,11 @@ class Activity extends DbObject
      */
     protected $deadline;
     /**
+     * @Column(name="act_nbParticipants", length=10, type="integer")
+     * @var int
+     */
+    protected $nbParticipants;
+    /**
      * @Column(name="act_objectives", type="string")
      * @var string
      */
@@ -51,6 +56,11 @@ class Activity extends DbObject
      * @var string
      */
     protected $status;
+    /**
+     * @Column(name="act_progress", type="float")
+     * @var float
+     */
+    protected $progress;
     /**
      * @Column(name="act_isRewarding", type="boolean")
      * @var bool
@@ -94,8 +104,10 @@ class Activity extends DbObject
      * @param string $name
      * @param string $visibility
      * @param string $deadline
+     * @param int $nbParticipants
      * @param string $objectives
      * @param string $status
+     * @param float $progress
      * @param bool $isRewarding
      * @param float $distrAmount
      * @param int $res_inertia
@@ -104,15 +116,17 @@ class Activity extends DbObject
      * @param /DateTime $deleted
      * @param /DateTime $completed
      */
-    public function __construct($id=0, $org_id=1, $name='',$visibility='', $deadline=null, $objectives='', $status='', $isRewarding=false, $distrAmount=0.0, $res_inertia=0, $res_benefit_eff=0,$inserted=null,$deleted=null,$completed=null)
+    public function __construct($id=0, $org_id=1, $name='',$visibility='', $deadline=null, $nbParticipants=0,$objectives='', $status='', $progress=0, $isRewarding=false, $distrAmount=0.0, $res_inertia=0, $res_benefit_eff=0,$inserted=null,$deleted=null,$completed=null)
     {
         parent::__construct($id,new \DateTime());
         $this->org_id = $org_id;
         $this->name = $name;
         $this->visibility = $visibility;
         $this->deadline = $deadline;
+        $this->nbParticipants = $nbParticipants;
         $this->objectives = $objectives;
         $this->status = $status;
+        $this->progress = $progress;
         $this->isRewarding = $isRewarding;
         $this->distrAmount = $distrAmount;
         $this->res_inertia = $res_inertia;
@@ -191,6 +205,22 @@ class Activity extends DbObject
     public function setDeadline($deadline)
     {
         $this->deadline = $deadline;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbParticipants()
+    {
+        return $this->nbParticipants;
+    }
+
+    /**
+     * @param int $nbParticipants
+     */
+    public function setNbParticipants($nbParticipants)
+    {
+        $this->nbParticipants = $nbParticipants;
     }
 
     /**
@@ -289,9 +319,21 @@ class Activity extends DbObject
         $this->res_benefit_eff = $res_benefit_eff;
     }
 
+    /**
+     * @return float
+     */
+    public function getProgress()
+    {
+        return $this->progress;
+    }
 
-
-
+    /**
+     * @param float $progress
+     */
+    public function setProgress($progress)
+    {
+        $this->progress = $progress;
+    }
 
     public function toArrayUser()
     {
